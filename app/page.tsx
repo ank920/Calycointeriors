@@ -6,6 +6,7 @@ import { BeforeAfterSlider } from "@/components/before-after-slider";
 import { ConsultForm } from "@/components/consult-form";
 import { ProjectGallery } from "@/components/project-gallery";
 import { Testimonials } from "@/components/testimonials";
+import { SplitText } from "@/components/split-text";
 
 const FEATURE_ICON_PROPS = {
   width: 34,
@@ -215,24 +216,24 @@ export default function Home() {
         <div className="hero-overlay" />
         <div className="hero-content">
           <h1
-            data-reveal="up"
             style={{
               margin: "0 0 clamp(18px,2.5vw,28px)",
               fontWeight: 700,
               lineHeight: 1.02,
               letterSpacing: "-.03em",
               fontSize: "clamp(40px,6.4vw,98px)",
-              maxWidth: "18ch"
+              maxWidth: "18ch",
+              perspective: "600px"
             }}
           >
-            Designing Homes People Love Living In.
+            <SplitText text="Designing Homes People Love Living In." />
           </h1>
           <p
             data-reveal="up"
             data-delay="100"
             style={{ margin: "0 0 clamp(28px,3.5vw,40px)", maxWidth: "40ch", fontSize: "clamp(15px,1.3vw,19px)", lineHeight: 1.5, color: "rgba(255,255,255,.82)" }}
           >
-            Premium interiors with complete transparency.
+            Premium interiors with complete <span id="hero-cycle">transparency</span>.
           </p>
           <div data-reveal="up" data-delay="200" style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
             <a href="#contact" className="btn-solid">Start Your Project</a>
@@ -242,7 +243,7 @@ export default function Home() {
       </section>
 
       {/* ═══ SECTION 2 — STATEMENT ═══ */}
-      <section style={{ padding: "clamp(110px,15vw,200px) clamp(20px,4.5vw,70px)", textAlign: "center" }}>
+      <section style={{ padding: "clamp(64px,9vw,124px) clamp(20px,4.5vw,70px)", textAlign: "center" }}>
         <h2
           data-reveal="up"
           style={{
@@ -307,7 +308,10 @@ export default function Home() {
         <div className="project-scene-stage">
           <div className="project-scene-layer">
             <div className="project-banner-img">
-              <img src="/assets/home%20page/Living%20Room.webp" alt="A thoughtfully designed living room with warm evening lighting" />
+              <picture>
+                <source media="(max-width:900px)" srcSet="/before%20and%20after/s1,2.png" />
+                <img src="/assets/home%20page/Living%20Room.webp" alt="A thoughtfully designed living room with warm evening lighting" />
+              </picture>
             </div>
             <div className="project-banner-overlay" />
             <div className="project-banner-content">
@@ -319,7 +323,10 @@ export default function Home() {
           </div>
           <div className="project-scene-layer">
             <div className="project-banner-img">
-              <img src="/assets/home%20page/Kitchen.webp" alt="An expertly executed kitchen with natural daylight" />
+              <picture>
+                <source media="(max-width:900px)" srcSet="/assets/images/Cozy%20pastel%20kids'%20room%20with%20modern%20touches.png" />
+                <img src="/assets/home%20page/Kitchen.webp" alt="An expertly executed kitchen with natural daylight" />
+              </picture>
             </div>
             <div className="project-banner-overlay" />
             <div className="project-banner-content">
@@ -330,7 +337,10 @@ export default function Home() {
           </div>
           <div className="project-scene-layer">
             <div className="project-banner-img">
-              <img src="/assets/home%20page/Bedroom.webp" alt="A bedroom delivered with transparent craftsmanship and warm morning light" />
+              <picture>
+                <source media="(max-width:900px)" srcSet="/before%20and%20after/s4,2.png" />
+                <img src="/assets/home%20page/Bedroom.webp" alt="A bedroom delivered with transparent craftsmanship and warm morning light" />
+              </picture>
             </div>
             <div className="project-banner-overlay" />
             <div className="project-banner-content">
@@ -343,7 +353,7 @@ export default function Home() {
       </section>
 
       {/* ═══ SECTION 6 — CATEGORIES ═══ */}
-      <section style={{ maxWidth: "1680px", margin: "0 auto", padding: "clamp(90px,12vw,170px) clamp(20px,4.5vw,70px)" }}>
+      <section style={{ maxWidth: "1680px", margin: "0 auto", padding: "clamp(56px,7vw,108px) clamp(20px,4.5vw,70px)" }}>
         <h2
           data-reveal="up"
           style={{
@@ -407,16 +417,11 @@ export default function Home() {
       {/* ═══ SECTION 9 — BEFORE & AFTER ═══ */}
       <section className="ba-section">
         <div className="ba-head" data-reveal="up">
-          <h2 className="ba-heading">One Transformation At A Time.</h2>
+          <h2 className="ba-heading">One Transformation At A&nbsp;Time.</h2>
           <p className="ba-sub">Drag to compare. Real homes, before our team began and after handover.</p>
         </div>
         <div data-reveal="up" data-delay="100">
-          <BeforeAfterSlider
-            before="/assets/home%20page/Living%20Room.webp"
-            after="/assets/home%20page/Living%20Room.webp"
-            beforeAlt="The living room before the Calyco renovation"
-            afterAlt="The same living room after the Calyco renovation"
-          />
+          <BeforeAfterSlider />
         </div>
       </section>
 

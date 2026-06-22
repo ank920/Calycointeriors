@@ -88,7 +88,7 @@ export function SiteInteractions() {
 
     // ── Hero cycle text ──
     const cycleEl = document.getElementById("hero-cycle");
-    const cycleItems = ["private residences", "luxury villas", "heritage havelis", "bespoke workplaces"];
+    const cycleItems = ["transparency", "honesty", "craftsmanship", "accountability"];
     let cycleIdx = 0;
     let cycleInterval: ReturnType<typeof setInterval> | undefined;
     if (cycleEl) {

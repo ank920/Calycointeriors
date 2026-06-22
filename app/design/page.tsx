@@ -6,9 +6,9 @@ import { ConsultForm } from "@/components/consult-form";
 import { DesignHero } from "@/components/design-hero";
 
 const SHOWCASE_IMAGES = {
-  main: "/assets/home%20page/Kitchen.webp",
-  top: "/assets/home%20page/Living%20Room.webp",
-  bottom: "/assets/home%20page/Bedroom.webp"
+  main: "/assets/images/Modern%20kitchen.png",
+  top: "/assets/images/Cozy%20modern%20living%20room%20with%20natural%20light.png",
+  bottom: "/assets/images/bedroom%20with%20city%20view.png"
 };
 
 export const metadata: Metadata = {
@@ -200,10 +200,10 @@ export default function DesignPage() {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="consult-section">
+      <section className="consult-section" id="contact">
         <div className="consult-inner">
           <div data-reveal="up">
-            <h2 className="consult-heading">Ready To See Yours In 3D?</h2>
+            <h2 className="consult-heading">Let&apos;s Bring Your Space To Life.</h2>
             <p className="consult-sub">
               Tell us about your space — we&apos;ll model it before we build it.
             </p>

@@ -11,9 +11,10 @@ const GALLERY_IMAGES = [
 
 const IMG_LIVING = "/assets/home%20page/Living%20Room.webp";
 const IMG_BEDROOM = "/assets/home%20page/Bedroom.webp";
-const IMG_KITCHEN = "/assets/home%20page/Kitchen.webp";
 const IMG_WARDROBE = "/assets/home%20page/Wardrobe.webp";
 const IMG_LOUNGE = "/assets/home%20page/extra.webp";
+const IMG_ENTRYWAY = "/assets/images/Elegant%20Mediterranean%20entryway%20with%20warm%20tones.png";
+const IMG_HOME_OFFICE = "/assets/images/Luxurious%20modern%20home%20office%20setup.png";
 
 function GalleryShowcase() {
   return (
@@ -199,7 +200,7 @@ export function AboutContent() {
             </div>
           </div>
           <div className="about-split-image" data-reveal="up" data-delay="160">
-            <img src={IMG_LOUNGE} alt="A Calyco-designed living space" />
+            <img src={IMG_ENTRYWAY} alt="An elegant Calyco-designed entryway" />
           </div>
         </div>
       </section>
@@ -210,7 +211,7 @@ export function AboutContent() {
       <section className="wc-overview-v2" style={{ paddingTop: 0 }}>
         <div className="wc-overview-v2-inner">
           <div className="about-split-image" data-reveal="up" data-delay="160">
-            <img src={IMG_KITCHEN} alt="A Calyco-designed kitchen" />
+            <img src={IMG_HOME_OFFICE} alt="A Calyco-designed home office" />
           </div>
           <div>
             <div data-reveal="up">

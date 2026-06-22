@@ -42,7 +42,7 @@ export default function AIDesignPage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: "clamp(120px,15vw,200px) clamp(20px,4.5vw,70px) clamp(80px,10vw,140px)"
+          padding: "clamp(74px,9vw,124px) clamp(20px,4.5vw,70px) clamp(50px,6.5vw,88px)"
         }}
       >
         <span
@@ -89,7 +89,7 @@ export default function AIDesignPage() {
       </section>
 
       {/* ═══ FEATURES ═══ */}
-      <section style={{ maxWidth: "1680px", margin: "0 auto", padding: "clamp(80px,11vw,160px) clamp(20px,4.5vw,70px)" }}>
+      <section style={{ maxWidth: "1680px", margin: "0 auto", padding: "clamp(50px,7vw,100px) clamp(20px,4.5vw,70px)" }}>
         <div data-reveal="up" style={{ marginBottom: "clamp(34px,4.5vw,64px)" }}>
           <span style={{ fontSize: "11px", letterSpacing: ".24em", textTransform: "uppercase", color: "#8C8576", fontWeight: 500 }}>
             (How it helps)
@@ -140,7 +140,7 @@ export default function AIDesignPage() {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section style={{ background: "#ECEADE", padding: "clamp(70px,9vw,140px) clamp(20px,4.5vw,70px)" }}>
+      <section style={{ background: "#ECEADE", padding: "clamp(46px,6vw,88px) clamp(20px,4.5vw,70px)" }}>
         <div
           style={{
             maxWidth: "1520px",

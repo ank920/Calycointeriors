@@ -43,7 +43,6 @@ function SendIcon() {
 export function SiteFooter() {
   return (
     <footer
-      id="contact"
       className="site-footer"
       style={{
         background: "var(--primary)",
@@ -97,6 +96,7 @@ export function SiteFooter() {
         </div>
 
         <div
+          className="footer-bottom-row"
           style={{
             display: "flex",
             justifyContent: "space-between",

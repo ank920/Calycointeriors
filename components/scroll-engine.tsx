@@ -146,8 +146,74 @@ export function ScrollEngine() {
         // section can never appear before everything has visibly settled.
         tl.to({}, { duration: 5 });
         if (tl.scrollTrigger) triggers.push(tl.scrollTrigger);
+      } else if (row && svg && path && icons.length >= 2) {
+        // Mobile — same drawn-line storytelling as desktop, just re-oriented:
+        // items stack in one column (see CSS), so the path threads vertically
+        // through each icon's center instead of horizontally, swaying left/right
+        // for the same hand-drawn feel. Scroll-scrubbed but NOT pinned — mobile
+        // scroll distance is precious, so the section just plays out normally
+        // as it passes through the viewport instead of commandeering the scroll.
+        gsap.set(lines, { clipPath: "inset(0 0 0% 0)" });
+
+        const buildVerticalPath = () => {
+          const rowRect = row.getBoundingClientRect();
+          const cx = rowRect.width / 2;
+          const amp = Math.min(34, rowRect.width * 0.16);
+          const centers = Array.from(icons).map((icon) => {
+            const r = icon.getBoundingClientRect();
+            return r.top + r.height / 2 - rowRect.top;
+          });
+          const H = Math.max(...centers) + 40;
+          svg.setAttribute("viewBox", `0 0 ${rowRect.width} ${H}`);
+          svg.style.height = `${H}px`;
+          let d = `M${cx},${centers[0]}`;
+          for (let i = 0; i < centers.length - 1; i++) {
+            const y0 = centers[i];
+            const y1 = centers[i + 1];
+            const dir = i % 2 === 0 ? 1 : -1;
+            d += ` C${cx + dir * amp},${y0 + (y1 - y0) / 3} ${cx - dir * amp},${y0 + ((y1 - y0) * 2) / 3} ${cx},${y1}`;
+          }
+          path.setAttribute("d", d);
+          const length = path.getTotalLength();
+          gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+
+          const samples = 400;
+          const fractions: number[] = [];
+          let sampleIdx = 0;
+          for (let i = 0; i < centers.length; i++) {
+            let found = length;
+            for (; sampleIdx <= samples; sampleIdx++) {
+              const len = (sampleIdx / samples) * length;
+              if (path.getPointAtLength(len).y >= centers[i]) {
+                found = len;
+                break;
+              }
+            }
+            fractions.push(found / length);
+          }
+          return fractions;
+        };
+
+        let fractions = buildVerticalPath();
+        onRealLifeResize = () => {
+          fractions = buildVerticalPath();
+        };
+        window.addEventListener("resize", onRealLifeResize);
+
+        const tl = gsap.timeline({
+          scrollTrigger: { trigger: realLifeSection, start: "top 80%", end: "bottom 55%", scrub: true }
+        });
+        const pathDrawDuration = 1.4;
+        tl.to(heading, { opacity: 1, y: 0, duration: 0.3 })
+          .to(path, { strokeDashoffset: 0, duration: pathDrawDuration, ease: "none" }, 0.2);
+        const pathDrawStart = 0.2;
+        items.forEach((item, i) => {
+          const at = Math.max(0, pathDrawStart + fractions[i] * pathDrawDuration - 0.08);
+          tl.to(item, { opacity: 1, y: 0, duration: 0.25 }, at);
+        });
+        if (tl.scrollTrigger) triggers.push(tl.scrollTrigger);
       } else {
-        // Mobile / no-pin fallback — a simple fade-up reveal as the section enters view.
+        // Fallback for the rare case the icons/path markup isn't present.
         gsap.set(lines, { clipPath: "inset(0 0 0% 0)" });
         ScrollTrigger.create({
           trigger: realLifeSection,
@@ -217,12 +283,25 @@ export function ScrollEngine() {
     // jump to any "#hash" in the URL (e.g. landing on "/#contact" from another
     // page), so the target has since moved and the page is now scrolled to
     // the wrong spot. Re-sync once layout has settled.
+    let hashRetryTimers: ReturnType<typeof setTimeout>[] = [];
+    let scrollToHash: (() => void) | undefined;
     if (window.location.hash) {
       const hashTarget = document.querySelector(window.location.hash);
       if (hashTarget) {
-        requestAnimationFrame(() =>
-          requestAnimationFrame(() => lenis.scrollTo(hashTarget as HTMLElement, { immediate: true }))
-        );
+        scrollToHash = () => lenis.scrollTo(hashTarget as HTMLElement, { immediate: true });
+        // A single double-RAF re-sync isn't reliable enough for a fresh
+        // cross-page navigation (e.g. clicking "Contact Us" from /about) —
+        // that's a full page load, not a same-page hash jump, so there's a
+        // lot more still settling (Lenis construction, the hero/project-scene
+        // pin-spacers being inserted, this very effect's other setup above)
+        // than there is for a same-page click, which is why the first click
+        // from another page lands at the top while a second click (now a
+        // same-page hash jump the browser handles natively) works fine.
+        // Retrying at a few staggered times covers whichever stage of that
+        // settling actually still needs to finish.
+        requestAnimationFrame(() => requestAnimationFrame(scrollToHash as () => void));
+        window.addEventListener("load", scrollToHash, { once: true });
+        hashRetryTimers = [setTimeout(scrollToHash, 350), setTimeout(scrollToHash, 900)];
       }
     }
 
@@ -247,6 +326,8 @@ export function ScrollEngine() {
     return () => {
       triggers.forEach((t) => t.kill());
       if (onRealLifeResize) window.removeEventListener("resize", onRealLifeResize);
+      if (scrollToHash) window.removeEventListener("load", scrollToHash);
+      hashRetryTimers.forEach((id) => clearTimeout(id));
       gsap.ticker.remove(raf);
       lenis.destroy();
       lenisRef.current = null;
