@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { CustomCursor, SiteInteractions } from "@/components/site-interactions";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ScrollEngine } from "@/components/scroll-engine";
+import { SpaceEstimator } from "@/components/space-estimator";
+import { AIDesignHero } from "@/components/ai-design-hero";
+import { AIDesignTagline } from "@/components/ai-design-tagline";
 
 export const metadata: Metadata = {
   title: "AI Design — Calyco Interiors",
@@ -31,65 +35,20 @@ export default function AIDesignPage() {
     <>
       <CustomCursor />
       <SiteInteractions />
+      <ScrollEngine />
       <SiteHeader />
 
       {/* ═══ HERO ═══ */}
-      <section
-        style={{
-          background: "#16140F",
-          color: "#F4F0E8",
-          minHeight: "78vh",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          padding: "clamp(74px,9vw,124px) clamp(20px,4.5vw,70px) clamp(50px,6.5vw,88px)"
-        }}
-      >
-        <span
-          data-reveal="up"
-          style={{
-            display: "inline-block",
-            marginBottom: "clamp(16px,2vw,26px)",
-            fontSize: "11px",
-            letterSpacing: ".34em",
-            textTransform: "uppercase",
-            fontWeight: 600,
-            color: "rgba(244,240,232,.7)"
-          }}
-        >
-          AI Design — In Development
-        </span>
-        <h1
-          data-reveal="up"
-          data-delay="80"
-          style={{
-            margin: "0 0 clamp(20px,2.6vw,32px)",
-            fontFamily: "'Inter',sans-serif",
-            fontWeight: 800,
-            letterSpacing: "-.035em",
-            lineHeight: 0.96,
-            fontSize: "clamp(40px,7vw,108px)",
-            maxWidth: "18ch"
-          }}
-        >
-          Design intelligence, <em style={{ fontStyle: "italic", color: "#D4956A" }}>tuned</em> to your space.
-        </h1>
-        <p
-          data-reveal="up"
-          data-delay="160"
-          style={{ margin: "0 0 clamp(28px,3.5vw,40px)", maxWidth: "54ch", fontSize: "clamp(15px,1.2vw,18px)", lineHeight: 1.7, color: "rgba(244,240,232,.8)" }}
-        >
-          Calyco&apos;s AI Design tool turns a brief, a few reference images and your room dimensions into mood
-          boards, material palettes and layout options — refined by our studio before anything reaches site.
-        </p>
-        <div data-reveal="up" data-delay="240" style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-          <a href="/#contact" className="btn-solid">Join the Waitlist</a>
-          <a href="/#work" className="btn-ghost">See Studio Work</a>
-        </div>
-      </section>
+      <AIDesignHero />
+
+      {/* ═══ ANIMATED TAGLINE ═══ */}
+      <AIDesignTagline />
+
+      {/* ═══ INSTANT ESTIMATOR ═══ */}
+      <SpaceEstimator />
 
       {/* ═══ FEATURES ═══ */}
-      <section style={{ maxWidth: "1680px", margin: "0 auto", padding: "clamp(50px,7vw,100px) clamp(20px,4.5vw,70px)" }}>
+      <section style={{ maxWidth: "1680px", margin: "0 auto", padding: "clamp(56px,7vw,108px) clamp(20px,4.5vw,70px)" }}>
         <div data-reveal="up" style={{ marginBottom: "clamp(34px,4.5vw,64px)" }}>
           <span style={{ fontSize: "11px", letterSpacing: ".24em", textTransform: "uppercase", color: "#8C8576", fontWeight: 500 }}>
             (How it helps)
@@ -107,10 +66,11 @@ export default function AIDesignPage() {
             Three ways AI speeds up the studio process
           </h2>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", border: "1px solid rgba(22,20,15,.14)" }}>
+        <div className="ai-features-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", border: "1px solid rgba(22,20,15,.14)" }}>
           {FEATURES.map((f, i) => (
             <div
               key={f.num}
+              className="ai-feature-item"
               data-reveal="up"
               data-delay={i * 80}
               style={{
@@ -140,7 +100,7 @@ export default function AIDesignPage() {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section style={{ background: "#ECEADE", padding: "clamp(46px,6vw,88px) clamp(20px,4.5vw,70px)" }}>
+      <section style={{ background: "#ECEADE", padding: "clamp(56px,7vw,96px) clamp(20px,4.5vw,70px)" }}>
         <div
           style={{
             maxWidth: "1520px",
@@ -168,8 +128,8 @@ export default function AIDesignPage() {
           >
             Want early access to AI Design?
           </h2>
-          <a href="mailto:info@calyco.interiors" data-reveal="up" className="btn-solid">
-            info@calyco.interiors <span style={{ fontSize: ".8em" }}>↗</span>
+          <a href="mailto:info@calycointeriors.com" data-reveal="up" className="btn-solid">
+            info@calycointeriors.com <span style={{ fontSize: ".8em" }}>↗</span>
           </a>
         </div>
       </section>

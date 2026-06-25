@@ -113,7 +113,7 @@ export function Testimonials() {
     <section className="testimonials-columns-section">
       <div className="testimonials-head" data-reveal="up">
         <p className="testimonials-eyebrow">Testimonials</p>
-        <h2 className="feature-heading">What Homeowners Say.</h2>
+        <h2 className="feature-heading">What Home Owners Say.</h2>
       </div>
       <div className="testimonials-columns-wrap" data-reveal="up" data-delay="120">
         <TestimonialsColumn testimonials={firstColumn} duration={18} />

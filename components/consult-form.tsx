@@ -47,21 +47,21 @@ export function ConsultForm() {
 
       <div className="consult-field">
         <label htmlFor="consult-name">Name</label>
-        <input id="consult-name" type="text" placeholder="Your full name" />
+        <input id="consult-name" name="name" type="text" autoComplete="name" placeholder="Your full name" />
       </div>
 
       <div className="consult-field">
         <label htmlFor="consult-phone">
           Phone No. <span className="consult-required">*</span>
         </label>
-        <input id="consult-phone" type="tel" placeholder="Phone number" required />
+        <input id="consult-phone" name="tel" type="tel" autoComplete="tel" placeholder="Phone number" required />
       </div>
 
       <div className="consult-field">
         <label htmlFor="consult-email">
           Email <span className="consult-required">*</span>
         </label>
-        <input id="consult-email" type="email" placeholder="Email address" required />
+        <input id="consult-email" name="email" type="email" autoComplete="email" placeholder="Email address" required />
       </div>
 
       <div className="consult-field consult-field-city">

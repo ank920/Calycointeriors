@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CustomCursor, SiteInteractions } from "@/components/site-interactions";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ScrollEngine } from "@/components/scroll-engine";
 import { ConsultForm } from "@/components/consult-form";
 import { DesignHero } from "@/components/design-hero";
 
@@ -81,6 +82,7 @@ export default function DesignPage() {
     <>
       <CustomCursor />
       <SiteInteractions />
+      <ScrollEngine />
       <SiteHeader />
 
       {/* ═══ HERO ═══ */}

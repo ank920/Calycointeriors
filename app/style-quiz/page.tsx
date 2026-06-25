@@ -3,23 +3,23 @@ import { CustomCursor, SiteInteractions } from "@/components/site-interactions";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ScrollEngine } from "@/components/scroll-engine";
-import { AboutHero } from "@/components/about-hero";
-import { AboutContent } from "@/components/about-content";
+import { StyleQuiz } from "@/components/style-quiz";
 
 export const metadata: Metadata = {
-  title: "About Calyco Interiors | Interior Design & Execution Company",
-  description: "Calyco Interiors is an independent interior solutions company created to make home and office interiors more organized, transparent, and execution-focused."
+  title: "Style Quiz | Calyco Interiors",
+  description: "Answer 7 quick visual questions to discover your Calyco interior design style."
 };
 
-export default function AboutPage() {
+export default function StyleQuizPage() {
   return (
     <>
       <CustomCursor />
       <SiteInteractions />
       <ScrollEngine />
       <SiteHeader />
-      <AboutHero />
-      <AboutContent />
+      <main className="sq-page">
+        <StyleQuiz />
+      </main>
       <SiteFooter />
     </>
   );

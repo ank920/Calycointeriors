@@ -122,29 +122,39 @@ export function ScrollEngine() {
         };
         window.addEventListener("resize", onRealLifeResize);
 
-        // Pinned: the section stays fixed at exactly one viewport while 140%
-        // of extra scroll plays out the reveal — the section's own CSS height
-        // never changes, only the time spent looking at it does. Pinning also
-        // makes overlap with the next section structurally impossible: nothing
-        // below this section can scroll into view until the pin itself releases,
-        // which only happens once this scrub timeline has reached progress 1.
-        const tl = gsap.timeline({
-          scrollTrigger: { trigger: realLifeSection, start: "top top", end: "+=140%", scrub: true, pin: true, anticipatePin: 1 }
+        // Heading + paragraph lines reveal early, while the section is still
+        // scrolling up into place from below — tied to its own (non-pinned)
+        // scrub so the text doesn't wait for the pin to fully engage before
+        // it starts appearing.
+        const introTl = gsap.timeline({
+          scrollTrigger: { trigger: realLifeSection, start: "top 95%", end: "top top", scrub: true }
         });
-        const pathDrawDuration = 1.8;
-        tl.to(heading, { opacity: 1, y: 0, duration: 1 })
-          .to(lines, { clipPath: "inset(0 0 0% 0)", duration: 0.5, stagger: 0.15 }, "-=0.2")
-          .to(path, { strokeDashoffset: 0, duration: pathDrawDuration, ease: "none" });
+        introTl
+          .to(heading, { opacity: 1, y: 0, duration: 1 })
+          .to(lines, { clipPath: "inset(0 0 0% 0)", duration: 0.6, stagger: 0.12 }, "-=0.3");
+        if (introTl.scrollTrigger) triggers.push(introTl.scrollTrigger);
+
+        // Pinned: the section stays fixed at exactly one viewport while extra
+        // scroll plays out the rest of the reveal (the drawn line + icons) —
+        // the section's own CSS height never changes, only the time spent
+        // looking at it does. Pinning also makes overlap with the next
+        // section structurally impossible: nothing below this section can
+        // scroll into view until the pin itself releases, which only happens
+        // once this scrub timeline has reached progress 1.
+        const tl = gsap.timeline({
+          scrollTrigger: { trigger: realLifeSection, start: "top top", end: "+=70%", scrub: true, pin: true, anticipatePin: 1 }
+        });
+        const pathDrawDuration = 1.1;
+        tl.to(path, { strokeDashoffset: 0, duration: pathDrawDuration, ease: "none" });
         const pathDrawStart = tl.duration() - pathDrawDuration;
         items.forEach((item, i) => {
           const at = Math.max(0, pathDrawStart + fractions[i] * pathDrawDuration - 0.1);
           tl.to(item, { opacity: 1, y: 0, duration: 0.3 }, at);
         });
-        // Hold the fully-revealed state well before the pin releases — content
-        // (heading+lines+path+icons) now finishes by roughly the timeline's
-        // halfway point, leaving the back half as pure buffer so the next
-        // section can never appear before everything has visibly settled.
-        tl.to({}, { duration: 5 });
+        // Hold the fully-revealed state briefly before the pin releases — just
+        // enough buffer that the next section never appears before everything
+        // has visibly settled, without making text wait through a long scroll.
+        tl.to({}, { duration: 1.5 });
         if (tl.scrollTrigger) triggers.push(tl.scrollTrigger);
       } else if (row && svg && path && icons.length >= 2) {
         // Mobile — same drawn-line storytelling as desktop, just re-oriented:
@@ -253,6 +263,84 @@ export function ScrollEngine() {
       if (tl.scrollTrigger) triggers.push(tl.scrollTrigger);
     }
 
+    // Right-edge custom scrollbar — click anywhere on the track to jump
+    // straight to that point in the page (including the very bottom in one
+    // move, unlike a native track-click which only pages down), or drag the
+    // thumb for 1:1 control. The visible line is deliberately thin, so all
+    // pointer handling lives on #custom-scrollbar-hit — a much wider
+    // (32px) invisible column — rather than the thin track/thumb itself,
+    // otherwise the real clickable target would be only a few px wide.
+    const sbHit = document.getElementById("custom-scrollbar-hit");
+    const sbTrack = document.getElementById("custom-scrollbar-track");
+    const sbThumb = document.getElementById("custom-scrollbar-thumb");
+    let removeScrollbarListeners: (() => void) | undefined;
+    if (sbHit && sbTrack && sbThumb) {
+      const updateThumbSize = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? window.innerHeight / document.documentElement.scrollHeight : 1;
+        sbThumb.style.height = `${Math.max(ratio * 100, 10)}%`;
+      };
+      updateThumbSize();
+      window.addEventListener("resize", updateThumbSize);
+
+      triggers.push(
+        ScrollTrigger.create({
+          trigger: document.documentElement,
+          start: "top top",
+          end: "bottom bottom",
+          onUpdate: (self) => {
+            const travel = sbTrack.clientHeight - sbThumb.clientHeight;
+            sbThumb.style.transform = `translateY(${self.progress * travel}px)`;
+          }
+        })
+      );
+
+      const scrollToFraction = (fraction: number, immediate: boolean) => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const target = Math.max(0, Math.min(max, fraction * max));
+        lenis.scrollTo(target, immediate ? { immediate: true } : { duration: 1.1 });
+      };
+
+      let dragging = false;
+      const onPointerDown = (e: PointerEvent) => {
+        sbHit.setPointerCapture(e.pointerId);
+        const thumbRect = sbThumb.getBoundingClientRect();
+        const hitRect = sbHit.getBoundingClientRect();
+        const fraction = (e.clientY - hitRect.top) / hitRect.height;
+        // A generous +/-10px grab tolerance around the thumb itself, on top
+        // of the already-wide hit column, makes it easy to land a drag even
+        // with an imprecise tap.
+        if (e.clientY >= thumbRect.top - 10 && e.clientY <= thumbRect.bottom + 10) {
+          dragging = true;
+          document.documentElement.classList.add("sb-dragging");
+        } else {
+          scrollToFraction(fraction, false);
+        }
+      };
+      const onPointerMove = (e: PointerEvent) => {
+        if (!dragging) return;
+        const hitRect = sbHit.getBoundingClientRect();
+        scrollToFraction((e.clientY - hitRect.top) / hitRect.height, true);
+      };
+      const onPointerUp = () => {
+        dragging = false;
+        document.documentElement.classList.remove("sb-dragging");
+      };
+
+      sbHit.addEventListener("pointerdown", onPointerDown);
+      sbHit.addEventListener("pointermove", onPointerMove);
+      sbHit.addEventListener("pointerup", onPointerUp);
+      sbHit.addEventListener("pointercancel", onPointerUp);
+
+      removeScrollbarListeners = () => {
+        window.removeEventListener("resize", updateThumbSize);
+        sbHit.removeEventListener("pointerdown", onPointerDown);
+        sbHit.removeEventListener("pointermove", onPointerMove);
+        sbHit.removeEventListener("pointerup", onPointerUp);
+        sbHit.removeEventListener("pointercancel", onPointerUp);
+      };
+    }
+
     // Bottom-right scroll-progress ring.
     const bar = document.getElementById("scroll-progress-bar");
     if (bar) {
@@ -325,6 +413,7 @@ export function ScrollEngine() {
 
     return () => {
       triggers.forEach((t) => t.kill());
+      if (removeScrollbarListeners) removeScrollbarListeners();
       if (onRealLifeResize) window.removeEventListener("resize", onRealLifeResize);
       if (scrollToHash) window.removeEventListener("load", scrollToHash);
       hashRetryTimers.forEach((id) => clearTimeout(id));
@@ -335,20 +424,27 @@ export function ScrollEngine() {
   }, []);
 
   return (
-    <a
-      href="#"
-      id="scroll-progress"
-      aria-label="Scroll down"
-      onClick={(e) => {
-        e.preventDefault();
-        lenisRef.current?.scrollTo(window.scrollY + window.innerHeight, { duration: 1.2 });
-      }}
-    >
-      <svg viewBox="0 0 56 56" width="56" height="56">
-        <circle className="scroll-progress-track" cx="28" cy="28" r="24" />
-        <circle id="scroll-progress-bar" cx="28" cy="28" r="24" />
-      </svg>
-      <span className="scroll-progress-arrow">↓</span>
-    </a>
+    <>
+      <div id="custom-scrollbar-hit" aria-hidden="true">
+        <div id="custom-scrollbar-track">
+          <div id="custom-scrollbar-thumb" />
+        </div>
+      </div>
+      <a
+        href="#"
+        id="scroll-progress"
+        aria-label="Scroll down"
+        onClick={(e) => {
+          e.preventDefault();
+          lenisRef.current?.scrollTo(window.scrollY + window.innerHeight, { duration: 1.2 });
+        }}
+      >
+        <svg viewBox="0 0 56 56" width="56" height="56">
+          <circle className="scroll-progress-track" cx="28" cy="28" r="24" />
+          <circle id="scroll-progress-bar" cx="28" cy="28" r="24" />
+        </svg>
+        <span className="scroll-progress-arrow">↓</span>
+      </a>
+    </>
   );
 }

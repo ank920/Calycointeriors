@@ -10,15 +10,6 @@ function InstagramIcon() {
   );
 }
 
-function PinterestIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-      <path d="M8 21l3-10" />
-      <path d="M9.5 14c-1-.6-1.5-1.7-1.5-3 0-2.8 2.2-5 5.3-5 3 0 5.2 2 5.2 4.7 0 2.9-1.7 5.3-4.3 5.3-1.2 0-2.1-.6-2.4-1.4" />
-    </svg>
-  );
-}
-
 function LinkedinIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
@@ -27,6 +18,23 @@ function LinkedinIcon() {
       <circle cx="7.5" cy="7" r="0.4" fill="currentColor" />
       <path d="M11.5 17v-3.6c0-1.6 1-2.4 2.2-2.4 1.2 0 2 .8 2 2.4V17" />
       <line x1="11.5" y1="10.5" x2="11.5" y2="17" />
+    </svg>
+  );
+}
+
+function YoutubeIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+      <rect x="3" y="5.5" width="18" height="13" rx="4" />
+      <path d="M10.5 9.5l5 2.5-5 2.5v-5z" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function FacebookIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+      <path d="M14 21v-7h2.5l.5-3H14V9c0-.9.3-1.5 1.6-1.5H17V4.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2V11H8v3h2.5v7H14z" />
     </svg>
   );
 }
@@ -80,16 +88,19 @@ export function SiteFooter() {
           </div>
           <div className="footer-col" data-reveal="up" data-delay="200">
             <p className="footer-heading">Connect</p>
-            <a href="mailto:info@calyco.interiors" className="footer-link">info@calyco.interiors</a>
+            <a href="mailto:info@calycointeriors.com" className="footer-link">info@calycointeriors.com</a>
             <div className="footer-social-row">
-              <a href="#" className="footer-social-btn" title="Instagram" aria-label="Instagram">
+              <a href="https://www.instagram.com/calyco.interiors?igsh=ZXNhMmxheG12N2sw&utm_source=qr" target="_blank" rel="noopener noreferrer" className="footer-social-btn" title="Instagram" aria-label="Instagram">
                 <InstagramIcon />
               </a>
-              <a href="#" className="footer-social-btn" title="Pinterest" aria-label="Pinterest">
-                <PinterestIcon />
+              <a href="https://www.facebook.com/share/1DNUcbsdVY/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="footer-social-btn" title="Facebook" aria-label="Facebook">
+                <FacebookIcon />
               </a>
-              <a href="#" className="footer-social-btn" title="LinkedIn" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/company/calyco-interiors/" target="_blank" rel="noopener noreferrer" className="footer-social-btn" title="LinkedIn" aria-label="LinkedIn">
                 <LinkedinIcon />
+              </a>
+              <a href="https://youtube.com/@calycointeriors?si=HWjhV1YOtIXk5n2k" target="_blank" rel="noopener noreferrer" className="footer-social-btn" title="YouTube" aria-label="YouTube">
+                <YoutubeIcon />
               </a>
             </div>
           </div>

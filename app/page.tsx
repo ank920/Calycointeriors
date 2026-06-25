@@ -7,10 +7,11 @@ import { ConsultForm } from "@/components/consult-form";
 import { ProjectGallery } from "@/components/project-gallery";
 import { Testimonials } from "@/components/testimonials";
 import { SplitText } from "@/components/split-text";
+import { StyleQuizModal } from "@/components/style-quiz-modal";
 
 const FEATURE_ICON_PROPS = {
-  width: 34,
-  height: 34,
+  width: 26,
+  height: 26,
   viewBox: "0 0 32 32",
   fill: "none" as const,
   stroke: "currentColor",
@@ -204,6 +205,7 @@ export default function Home() {
       <CustomCursor />
       <SiteInteractions />
       <ScrollEngine />
+      <StyleQuizModal />
 
       {/* ═══ HEADER ═══ */}
       <SiteHeader />
@@ -231,13 +233,13 @@ export default function Home() {
           <p
             data-reveal="up"
             data-delay="100"
-            style={{ margin: "0 0 clamp(28px,3.5vw,40px)", maxWidth: "40ch", fontSize: "clamp(15px,1.3vw,19px)", lineHeight: 1.5, color: "rgba(255,255,255,.82)" }}
+            style={{ margin: "0 0 clamp(28px,3.5vw,40px)", maxWidth: "40ch", fontSize: "clamp(18px,1.8vw,25px)", lineHeight: 1.5, color: "rgba(255,255,255,.82)" }}
           >
             Premium interiors with complete <span id="hero-cycle">transparency</span>.
           </p>
           <div data-reveal="up" data-delay="200" style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
             <a href="#contact" className="btn-solid">Start Your Project</a>
-            <a href="#projects" className="btn-ghost">View Projects</a>
+            <a href="/style-quiz" className="btn-ghost">Know My Style</a>
           </div>
         </div>
       </section>
@@ -388,11 +390,17 @@ export default function Home() {
 
       {/* ═══ SECTION 7 — SEE WHAT HAPPENS NEXT ═══ */}
       <section className="feature-section">
-        <h2 className="feature-heading" data-reveal="up">See What Happens Next.</h2>
+        <div className="feature-head">
+          <p className="feature-eyebrow">The Process</p>
+          <h2 className="feature-heading" data-reveal="up">See What Happens Next.</h2>
+        </div>
         <div className="feature-grid">
           {NEXT_FEATURES.map((f, i) => (
             <div className="feature-item" key={f.label} data-reveal="up" data-delay={i * 60}>
-              <span className="feature-icon">{f.icon}</span>
+              <span className="feature-num">{String(i + 1).padStart(2, "0")}</span>
+              <span className="feature-icon-ring">
+                <span className="feature-icon">{f.icon}</span>
+              </span>
               <p className="feature-label">{f.label}</p>
             </div>
           ))}
@@ -402,11 +410,17 @@ export default function Home() {
       {/* ═══ SECTION 8 — A BETTER WAY TO DESIGN YOUR HOME ═══ */}
       <section className="feature-section feature-tint">
         <div className="feature-inner">
-          <h2 className="feature-heading" data-reveal="up">A Better Way To Design Your Home.</h2>
+          <div className="feature-head">
+            <p className="feature-eyebrow">Why Calyco</p>
+            <h2 className="feature-heading" data-reveal="up">A Better Way To Design Your Home.</h2>
+          </div>
           <div className="feature-grid">
             {BETTER_FEATURES.map((f, i) => (
               <div className="feature-item" key={f.label} data-reveal="up" data-delay={i * 60}>
-                <span className="feature-icon">{f.icon}</span>
+                <span className="feature-num">{String(i + 1).padStart(2, "0")}</span>
+                <span className="feature-icon-ring">
+                  <span className="feature-icon">{f.icon}</span>
+                </span>
                 <p className="feature-label">{f.label}</p>
               </div>
             ))}
