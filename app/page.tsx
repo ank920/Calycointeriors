@@ -7,7 +7,6 @@ import { ConsultForm } from "@/components/consult-form";
 import { ProjectGallery } from "@/components/project-gallery";
 import { Testimonials } from "@/components/testimonials";
 import { SplitText } from "@/components/split-text";
-import { StyleQuizModal } from "@/components/style-quiz-modal";
 
 const FEATURE_ICON_PROPS = {
   width: 26,
@@ -205,7 +204,6 @@ export default function Home() {
       <CustomCursor />
       <SiteInteractions />
       <ScrollEngine />
-      <StyleQuizModal />
 
       {/* ═══ HEADER ═══ */}
       <SiteHeader />

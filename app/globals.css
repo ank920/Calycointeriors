@@ -61,12 +61,25 @@ input,button{font-family:'Inter Tight',sans-serif;}
   border:1px solid rgba(255,255,255,.6);
   box-shadow:0 0 0 1px rgba(31,31,31,.04),0 1px 0 rgba(255,255,255,.7) inset,0 18px 40px -10px rgba(31,31,31,.18),0 4px 12px rgba(31,31,31,.05);
   backdrop-filter:blur(14px) saturate(120%);-webkit-backdrop-filter:blur(14px) saturate(120%);
-  transition:box-shadow .5s var(--ease),background .5s var(--ease),opacity .35s var(--ease);
+  transition:box-shadow .5s var(--ease),background .5s var(--ease),opacity .35s var(--ease),transform .4s var(--ease);
 }
+/* The floating pill sits on top of whatever's underneath it (page headings,
+   the estimator's Space/Visualizer/Cart stepper, etc.) — on mobile especially
+   there's no scroll room to spare for a permanently-docked bar, so it slides
+   away the moment you scroll down and only comes back once you scroll back
+   up, the same hide-on-scroll pattern most mobile sites use for this exact
+   floating-nav-over-content problem. */
+#header.header-hidden{transform:translateX(-50%) translateY(-160%);pointer-events:none;}
 /* The full-screen Space Estimator has its own sidebar nav and docks its CTAs
    in the same bottom-right corner as the header/scroll-progress button —
    both would otherwise visually collide with it. */
 body.est-active #header{opacity:0;pointer-events:none;}
+/* The quiz result's eyebrow + huge style-name heading sit right at the top
+   of the page, the same band the floating header pin occupies — rather than
+   guess at enough top padding to clear an unpredictably long style name,
+   keep the header off entirely for as long as that opening block is in
+   view; it fades back in once the user scrolls past it (see style-quiz.tsx). */
+body.sq-result-top-active #header{opacity:0;pointer-events:none;}
 #header.scrolled{
   background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(248,247,244,.93));
   box-shadow:0 0 0 1px rgba(31,31,31,.05),0 1px 0 rgba(255,255,255,.8) inset,0 22px 48px -12px rgba(31,31,31,.22),0 6px 16px rgba(31,31,31,.09);
@@ -349,7 +362,7 @@ nav>a:hover{opacity:1;}
 .category-row:hover .category-arrow{opacity:1;transform:translateX(0);}
 
 /* ── Design page hero (glass card + rotating ring + process ticker) ── */
-.design-hero-wrap{width:100%;height:100vh;display:flex;align-items:center;justify-content:center;padding:clamp(10px,1.6vw,20px);background:var(--bg);}
+.design-hero-wrap{width:100%;height:100svh;display:flex;align-items:center;justify-content:center;padding:clamp(10px,1.6vw,20px);background:var(--bg);}
 .design-hero-card{
   position:relative;width:100%;max-width:1536px;height:100%;overflow:hidden;
   border-radius:clamp(24px,3vw,48px);display:flex;flex-direction:column;justify-content:center;background:var(--primary);
@@ -409,7 +422,7 @@ nav>a:hover{opacity:1;}
 }
 @media (max-width:700px){
   .design-hero-wrap{height:auto;padding:10px;}
-  .design-hero-card{height:auto;min-height:100vh;padding-bottom:60px;}
+  .design-hero-card{height:auto;min-height:100svh;padding-bottom:60px;}
   .design-hero-content{margin-top:80px;}
   /* top is pushed below the floating header pill (~70px tall incl. its own
      offset) rather than reusing the header's own top offset — at this width
@@ -766,63 +779,6 @@ nav>a:hover{opacity:1;}
 @media (max-width:860px){
   .consult-inner{grid-template-columns:1fr;}
   .consult-form{max-width:none;margin-left:0;}
-}
-
-/* ── Style quiz email-capture modal ── */
-.style-quiz-overlay{
-  position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;
-  background:rgba(20,18,15,.6);backdrop-filter:blur(4px);padding:20px;overflow-y:auto;
-  animation:styleQuizFadeIn .35s var(--ease);
-}
-.style-quiz-card{
-  position:relative;width:100%;max-width:480px;margin:auto;background:var(--bg);
-  border-radius:20px;padding:clamp(28px,5vw,44px) clamp(24px,4.5vw,40px);text-align:center;
-  box-shadow:0 40px 80px -30px rgba(0,0,0,.45);animation:styleQuizUp .4s var(--ease);
-}
-.style-quiz-close{
-  position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;
-  border:1px solid var(--stone);background:var(--white);color:var(--primary);
-  font-size:18px;line-height:1;display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:background .35s var(--ease),transform .35s var(--ease);
-}
-.style-quiz-close:hover{background:var(--stone);transform:rotate(90deg);}
-.style-quiz-heading{
-  margin:8px 0 14px;font-weight:700;letter-spacing:-.02em;line-height:1.15;
-  font-size:clamp(22px,3.2vw,28px);
-}
-.style-quiz-sub{margin:0 0 24px;font-size:14px;line-height:1.55;color:var(--olive);}
-.style-quiz-label{display:block;margin:0 0 10px;font-size:13px;font-weight:600;text-align:left;}
-.style-quiz-input{
-  width:100%;padding:14px 16px;border:1px solid var(--stone);border-radius:10px;
-  background:var(--white);font-size:14px;color:var(--primary);margin:0 0 16px;
-}
-.style-quiz-input:focus{outline:none;border-color:var(--brass);}
-.style-quiz-submit{
-  display:block;width:100%;padding:15px;border-radius:10px;border:none;
-  background:var(--stone);color:var(--primary);font-size:13px;font-weight:700;
-  letter-spacing:.04em;text-transform:uppercase;cursor:pointer;
-  transition:background .35s var(--ease),color .35s var(--ease);
-}
-.style-quiz-submit:hover{background:var(--brass);color:var(--white);}
-.style-quiz-divider{display:flex;align-items:center;gap:14px;margin:24px 0;}
-.style-quiz-divider span{flex:1;height:1px;background:var(--stone);}
-.style-quiz-divider p{margin:0;font-size:13px;color:var(--olive);}
-.style-quiz-social{
-  display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
-  padding:13px;margin:0 0 12px;border:1px solid var(--stone);border-radius:10px;
-  background:var(--white);font-size:13px;font-weight:600;color:var(--primary);
-  cursor:pointer;transition:border-color .35s var(--ease),transform .35s var(--ease);
-}
-.style-quiz-social:hover{border-color:var(--brass);transform:translateY(-2px);}
-.style-quiz-privacy{margin:18px 0 6px;font-size:12px;color:var(--olive);}
-.style-quiz-terms{margin:0;font-size:12px;color:var(--olive);}
-.style-quiz-terms a{color:var(--brass);text-decoration:underline;}
-@keyframes styleQuizFadeIn{from{opacity:0;}to{opacity:1;}}
-@keyframes styleQuizUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
-@media (max-width:480px){
-  .style-quiz-overlay{padding:14px;align-items:flex-end;}
-  .style-quiz-card{max-width:none;border-radius:20px 20px 0 0;padding:28px 20px;max-height:92vh;overflow-y:auto;}
-  .style-quiz-close{top:12px;right:12px;}
 }
 
 /* ── Footer ── */
@@ -1475,7 +1431,7 @@ html.lenis,html.lenis body{height:auto;}
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   transition:transform .4s var(--ease),box-shadow .4s var(--ease),opacity .35s var(--ease);
 }
-body.est-active #scroll-progress{opacity:0;pointer-events:none;}
+body.est-active #scroll-progress,body.near-footer #scroll-progress{opacity:0;pointer-events:none;}
 #scroll-progress:hover{transform:scale(1.06);box-shadow:0 14px 32px -8px rgba(31,31,31,.3);}
 #scroll-progress svg{position:absolute;inset:0;transform:rotate(-90deg);}
 .scroll-progress-track{fill:none;stroke:rgba(31,31,31,.14);stroke-width:1.5;}
@@ -1555,7 +1511,7 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
 }
 
 /* ── About Us hero (glassmorphism) ── */
-.about-hero-wrap{width:100%;height:100vh;display:flex;align-items:center;justify-content:center;padding:clamp(10px,1.6vw,20px);background:var(--bg);}
+.about-hero-wrap{width:100%;height:100svh;display:flex;align-items:center;justify-content:center;padding:clamp(10px,1.6vw,20px);background:var(--bg);}
 .about-hero-section{
   position:relative;width:100%;max-width:1536px;height:100%;overflow:hidden;
   border-radius:clamp(24px,3vw,48px);display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.1);
@@ -1631,7 +1587,10 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
 
 @media (max-width:700px){
   .about-hero-wrap{height:auto;padding:10px;}
-  .about-hero-section{height:auto;min-height:100vh;}
+  /* Same fix as the AI Design hero: no justify-content left the text block
+     pinned to the top with all the leftover min-height floor dumped as bare
+     background below it — centering splits that space evenly instead. */
+  .about-hero-section{height:auto;min-height:100svh;justify-content:center;}
   .about-hero-stat-card{left:auto;right:16px;bottom:120px;}
   .about-hero-corner{padding:12px 18px 12px 28px;}
 }
@@ -1715,13 +1674,6 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
   transition:background .45s var(--ease),transform .45s var(--ease),box-shadow .45s var(--ease);
 }
 .sq-btn-primary:hover{background:#9c7a49;transform:translateY(-2px);box-shadow:0 14px 28px -10px rgba(176,141,87,.4);}
-.sq-btn-secondary{
-  display:inline-flex;align-items:center;gap:10px;padding:14px 30px;cursor:pointer;
-  background:var(--white);color:var(--primary);border:1px solid var(--stone);border-radius:100px;font-size:12px;
-  letter-spacing:.1em;text-transform:uppercase;font-weight:600;font-family:inherit;
-  transition:border-color .45s var(--ease),transform .45s var(--ease);
-}
-.sq-btn-secondary:hover{border-color:var(--brass);color:var(--brass);transform:translateY(-2px);}
 
 /* Question */
 .sq-question{max-width:1080px;margin:0 auto;text-align:center;}
@@ -1783,6 +1735,35 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
 .sq-space-tag{padding:7px 14px;border-radius:100px;background:var(--bg);border:1px solid var(--stone);font-size:12px;color:var(--primary);}
 
 .sq-cta{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;}
+
+/* "Talk to a Calyco Designer" modal — opened deliberately by that button
+   click (not auto-triggered like the removed lead-magnet popups), so it
+   reuses ConsultForm's own card styling rather than inventing new fields. */
+.sq-contact-overlay{
+  position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;
+  background:rgba(20,18,15,.6);backdrop-filter:blur(4px);padding:20px;overflow-y:auto;
+  animation:styleQuizFadeIn .35s var(--ease);
+}
+.sq-contact-card{position:relative;width:100%;max-width:460px;margin:auto;}
+.sq-contact-card .consult-form{margin:0;max-width:none;}
+/* ConsultForm carries data-reveal="up" for its normal in-page placement,
+   where the site-wide scroll observer reveals it once. That observer scans
+   once at initial load though, so a copy mounted into this modal long after
+   (only on click) is never picked up and would stay stuck at opacity:0 —
+   force it visible here instead of relying on that scroll-tied reveal. */
+.sq-contact-card [data-reveal]{opacity:1;transform:none;}
+.sq-contact-close{
+  position:absolute;top:-14px;right:-14px;z-index:1;width:32px;height:32px;border-radius:50%;
+  border:1px solid var(--stone);background:var(--white);color:var(--primary);
+  font-size:18px;line-height:1;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .35s var(--ease),transform .35s var(--ease);
+}
+.sq-contact-close:hover{background:var(--stone);transform:rotate(90deg);}
+@keyframes styleQuizFadeIn{from{opacity:0;}to{opacity:1;}}
+@media (max-width:480px){
+  .sq-contact-overlay{padding:14px;}
+  .sq-contact-close{top:-10px;right:0;}
+}
 
 @media (max-width:760px){
   .sq-gallery{grid-template-columns:repeat(2,1fr);}
@@ -1986,10 +1967,40 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
 .est-fine-print-dark{margin:0 0 14px;font-size:11px;line-height:1.5;color:var(--olive);}
 
 @media (max-width:900px){
-  .est-shell{flex-direction:column;height:auto;min-height:100vh;}
-  .est-sidebar{width:100%;flex-direction:row;justify-content:space-around;padding:14px;}
-  .est-sidebar-dial{width:64px;height:64px;}
-  .est-sidebar-dial-label-visualizer{left:30%;}
+  /* No min-height:100vh here — the shell's own background is black, and on
+     short steps (e.g. the Space list) the stacked sidebar+stage+panel add up
+     to less than a full screen, leaving that forced extra height as a bare
+     black strip between the panel's CTA and whatever section follows the
+     estimator on the page. Sizing purely to content removes that gap. */
+  .est-shell{flex-direction:column;height:auto;}
+  /* Desktop's tall black column with a big spinning dial doesn't translate to
+     a horizontal strip — turned sideways it was a wide black bar mostly empty
+     around one circle and two text labels. Mobile gets a compact segmented
+     control instead, in the same light-glass + brass-accent language as the
+     category tabs and the floating header pill elsewhere on the site,
+     rather than carrying the dark sidebar's black straight onto a strip. */
+  .est-sidebar{
+    width:100%;flex-direction:row;align-items:stretch;justify-content:stretch;
+    gap:8px;padding:10px 12px;
+    background:linear-gradient(180deg,rgba(255,255,255,.97),rgba(248,247,244,.93));
+    border-bottom:1px solid rgba(31,31,31,.08);
+    box-shadow:0 6px 18px -10px rgba(31,31,31,.18);
+  }
+  .est-sidebar-item,.est-sidebar-dial{
+    flex:1;width:auto;height:auto;min-width:0;border-radius:100px;padding:11px 4px;
+  }
+  .est-sidebar-item{
+    background:var(--bg);border:1px solid rgba(31,31,31,.13);
+    box-shadow:0 1px 0 rgba(255,255,255,.7) inset;
+  }
+  .est-sidebar-dial{
+    background:linear-gradient(180deg,#c4a06c,var(--brass));border:1px solid var(--brass);
+    box-shadow:0 8px 18px -8px rgba(176,141,87,.55),0 1px 0 rgba(255,255,255,.3) inset;
+  }
+  .est-sidebar-dial::before,.est-sidebar-dial::after{content:none;}
+  .est-sidebar-dial-label{position:static;transform:none;max-width:100%;color:#fff;font-size:9.5px;letter-spacing:.04em;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.15);}
+  .est-sidebar-label{font-size:9.5px;letter-spacing:.04em;white-space:nowrap;color:var(--olive);}
+  .est-sidebar-item:hover .est-sidebar-label{color:var(--brass);}
   /* Locking this to the base photos' own ~16:9 shape (instead of an
      arbitrary 46vh slice) means object-fit:cover crops it almost the same
      way it does on desktop, so the % positions calibrated there land in
@@ -2015,11 +2026,22 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
   .est-qty-btn{width:34px;height:34px;font-size:16px;}
   .est-add-btn{padding:11px 20px;font-size:12.5px;}
   .est-panel-thumb{width:52px;height:52px;}
-  .est-category-tabs{gap:8px;}
+  /* Flex-wrap left a lone last-row tab (e.g. just "Wardrobe" under "Bed" +
+     "Side Table") stranded small and left-aligned instead of sitting level
+     with the row above. A grid with auto-fit collapses unused columns on a
+     short last row, so that lone tab stretches to match the row above
+     instead of looking like an unbalanced leftover. */
+  .est-category-tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;}
+  .est-category-tab{padding:11px 8px;font-size:11.5px;text-align:center;}
+  /* Mobile panel is already tight on vertical space below the stage —
+     drop the secondary instructional copy under each title so the item
+     list shows sooner without scrolling. */
+  .est-panel-sub{display:none;}
+  .est-fine-print-dark{display:none;}
 }
 
 /* ── AI Design page hero — same full-bleed card pattern as About/Design heroes ── */
-.ai-hero-wrap{width:100%;height:100vh;display:flex;align-items:center;justify-content:center;padding:clamp(10px,1.6vw,20px);background:var(--bg);}
+.ai-hero-wrap{width:100%;height:100svh;display:flex;align-items:center;justify-content:center;padding:clamp(10px,1.6vw,20px);background:var(--bg);}
 .ai-hero-section{
   position:relative;width:100%;max-width:1536px;height:100%;overflow:hidden;
   border-radius:clamp(24px,3vw,48px);display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.1);
@@ -2085,7 +2107,11 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
 
 @media (max-width:700px){
   .ai-hero-wrap{height:auto;padding:10px;}
-  .ai-hero-section{height:auto;min-height:100vh;padding-bottom:90px;}
+  /* Badge/heading/CTA + stat card are shorter than the min-height floor, and
+     with no justify-content this flex column sat at the top, dumping all the
+     leftover room as bare background below the stat card. Centering it
+     splits that space evenly above and below instead. */
+  .ai-hero-section{height:auto;min-height:100svh;padding-bottom:90px;justify-content:center;}
   .ai-hero-text{padding:56px 20px 28px;}
   .ai-hero-heading{font-size:clamp(30px,8vw,40px);}
   /* Stat card moves into normal flow under the CTAs instead of floating

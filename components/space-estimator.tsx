@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import {
@@ -179,9 +180,17 @@ export function SpaceEstimator() {
   useEffect(() => {
     const el = shellRef.current;
     if (!el) return;
+    // threshold:0 (any part visible at all) — not 0.6 — because on mobile this
+    // shell's height is the stage plus however long the active panel's content
+    // happens to be (e.g. a full BOQ breakdown), often taller than the
+    // viewport itself. Requiring 60% of the *element's own* height to be
+    // visible is then mathematically unreachable, so the callback never
+    // fires, "est-active" never gets set, and the site-wide header/scroll
+    // button stay on screen the whole time — sitting right on top of this
+    // shell's own qty steppers, Add buttons, and BOQ rows.
     const observer = new IntersectionObserver(
       ([entry]) => document.body.classList.toggle("est-active", entry.isIntersecting),
-      { threshold: 0.6 }
+      { threshold: 0 }
     );
     observer.observe(el);
     return () => {
@@ -395,7 +404,14 @@ export function SpaceEstimator() {
       <div className="est-stage" ref={stageRef}>
         {liveComposites.length > 0 ? (
           <>
-            <img src={resolvedBaseImage} alt={space.name} className="est-stage-bg" />
+            <Image
+              src={resolvedBaseImage!}
+              alt={space.name}
+              fill
+              sizes="(max-width: 900px) 100vw, 70vw"
+              quality={70}
+              className="est-stage-bg"
+            />
             {liveComposites.map(({ cat, item, overlay: baseOverlay }) => {
               const isActive = cat.key === category.key;
               const overlay = isActive ? effectiveOverlay : baseOverlay;
@@ -433,7 +449,7 @@ export function SpaceEstimator() {
           </>
         ) : (
           <>
-            <img src={space.image} alt={space.name} className="est-stage-bg" />
+            <Image src={space.image} alt={space.name} fill sizes="(max-width: 900px) 100vw, 70vw" quality={70} className="est-stage-bg" />
           </>
         )}
         <div className="est-stage-scrim" />
@@ -478,7 +494,6 @@ export function SpaceEstimator() {
             getQty={(itemId) => getQty(category.key, itemId)}
             onSetQty={(itemId, qty) => handleSetQty(category.key, itemId, qty)}
             onPreview={(itemId) => setPreview(category.key, itemId)}
-            totalRange={totalRange}
             onSelectCategory={(i) => setCategoryIndex(i)}
             onContinue={() => setStep("boq")}
           />
@@ -552,7 +567,6 @@ function EstimatePanel({
   getQty,
   onSetQty,
   onPreview,
-  totalRange,
   onSelectCategory,
   onContinue
 }: {
@@ -563,7 +577,6 @@ function EstimatePanel({
   getQty: (itemId: string) => number;
   onSetQty: (itemId: string, qty: number) => void;
   onPreview: (itemId: string) => void;
-  totalRange: [number, number];
   onSelectCategory: (index: number) => void;
   onContinue: () => void;
 }) {
@@ -602,10 +615,11 @@ function EstimatePanel({
                 <ItemThumb item={item} index={i} className="est-panel-thumb" />
                 <span className="est-panel-row-text">
                   <strong>{item.name}</strong>
-                  <span>
-                    {formatRange(item.range)}
-                    {isPreviewing && <span className="est-preview-badge">Viewing</span>}
-                  </span>
+                  {isPreviewing && (
+                    <span>
+                      <span className="est-preview-badge">Viewing</span>
+                    </span>
+                  )}
                 </span>
               </button>
               <QtyControl qty={qty} onChange={(next) => onSetQty(item.id, next)} />
@@ -615,12 +629,8 @@ function EstimatePanel({
       </div>
 
       <div className="est-panel-footer">
-        <div className="est-panel-total">
-          <span>Estimated Project Range</span>
-          <strong>{formatRange(totalRange)}</strong>
-        </div>
         <button type="button" className="est-panel-cta" onClick={onContinue}>
-          Continue to BOQ <ArrowIcon />
+          Continue to Cart <ArrowIcon />
         </button>
       </div>
     </div>

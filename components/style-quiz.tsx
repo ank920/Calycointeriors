@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import {
   QUIZ_QUESTIONS,
   addScores,
@@ -8,9 +9,7 @@ import {
   scoreToResult,
   type StyleId
 } from "@/lib/style-quiz-data";
-import { StyleQuizEmailGate } from "@/components/style-quiz-modal";
-
-const SESSION_KEY = "calyco-style-quiz-session";
+import { ConsultForm } from "@/components/consult-form";
 
 function track(event: string, detail?: Record<string, unknown>) {
   if (typeof window === "undefined") return;
@@ -18,29 +17,12 @@ function track(event: string, detail?: Record<string, unknown>) {
   (window as any).dataLayer.push({ event, ...detail });
 }
 
-function getSessionId() {
-  if (typeof window === "undefined") return "";
-  let id = window.localStorage.getItem(SESSION_KEY);
-  if (!id) {
-    id = `sq_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
-    window.localStorage.setItem(SESSION_KEY, id);
-  }
-  return id;
-}
-
-type Phase = "intro" | "quiz" | "email" | "result";
-
-type StoredAnswer = {
-  questionId: string;
-  optionId: string | "neither";
-  timestamp: string;
-};
+type Phase = "intro" | "quiz" | "result";
 
 export function StyleQuiz() {
   const [phase, setPhase] = useState<Phase>("intro");
   const [step, setStep] = useState(0);
   const [scores, setScores] = useState(emptyScores());
-  const [answers, setAnswers] = useState<StoredAnswer[]>([]);
   const startedRef = useRef(false);
 
   const question = QUIZ_QUESTIONS[step];
@@ -59,10 +41,6 @@ export function StyleQuiz() {
   };
 
   const recordAnswer = (optionId: string | "neither", optionScores?: Partial<Record<StyleId, number>>) => {
-    const entry: StoredAnswer = { questionId: question.id, optionId, timestamp: new Date().toISOString() };
-    const nextAnswers = [...answers, entry];
-    setAnswers(nextAnswers);
-
     const nextScores = optionScores ? addScores(scores, optionScores) : scores;
     setScores(nextScores);
 
@@ -77,32 +55,14 @@ export function StyleQuiz() {
     } else {
       const result = scoreToResult(nextScores);
       track("style_quiz_completed", { main: result.main.id, sub: result.sub?.id ?? null });
-      setPhase("email");
+      track("style_result_viewed", { main: result.main.id, sub: result.sub?.id ?? null });
+      setPhase("result");
     }
   };
 
   const result = useMemo(() => scoreToResult(scores), [scores]);
 
-  const handleQuizSubmit = () => {
-    track("style_result_viewed", { main: result.main.id, sub: result.sub?.id ?? null });
-    setPhase("result");
-  };
-
   if (phase === "intro") return <IntroScreen onStart={startQuiz} />;
-
-  if (phase === "email")
-    return (
-      <StyleQuizEmailGate
-        quizData={{
-          sessionId: getSessionId(),
-          answers,
-          scores,
-          mainStyle: result.main.id,
-          subStyle: result.sub?.id ?? null
-        }}
-        onSubmit={handleQuizSubmit}
-      />
-    );
 
   if (phase === "result") return <ResultScreen main={result.main} sub={result.sub} />;
 
@@ -188,29 +148,61 @@ function ResultScreen({
   main: ReturnType<typeof scoreToResult>["main"];
   sub: ReturnType<typeof scoreToResult>["sub"];
 }) {
-  const shareText = `My Calyco Interior Style is ${main.name}${sub ? ` with a touch of ${sub.name}` : ""}. Find yours: https://calycointeriors.com/style-quiz`;
+  const topRef = useRef<HTMLDivElement>(null);
 
-  const handleShare = async () => {
-    track("style_shared_whatsapp", { main: main.id, sub: sub?.id ?? null });
-    if (navigator.share) {
-      try {
-        await navigator.share({ text: shareText });
-        return;
-      } catch {
-        // user cancelled or share failed — fall through to WhatsApp link
-      }
-    }
-    window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, "_blank");
+  // The floating header pin sits in the same band as this eyebrow + style
+  // name — and the style name's length varies, so there's no fixed amount
+  // of top padding that reliably clears it. A fixed timer popped the header
+  // back in mid-read regardless of how far the user had actually gotten, so
+  // tie it to scroll instead: hidden for as long as this opening block is
+  // in view, and it only reappears once the user has actually scrolled past
+  // it into the gallery/breakdown below.
+  useEffect(() => {
+    const el = topRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => document.body.classList.toggle("sq-result-top-active", entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      document.body.classList.remove("sq-result-top-active");
+    };
+  }, []);
+
+  const [contactOpen, setContactOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("lenis-stopped", contactOpen);
+    return () => document.documentElement.classList.remove("lenis-stopped");
+  }, [contactOpen]);
+
+  useEffect(() => {
+    if (!contactOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setContactOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [contactOpen]);
+
+  const handleDesignerClick = () => {
+    track("style_designer_cta_clicked", { main: main.id, sub: sub?.id ?? null });
+    setContactOpen(true);
   };
-
-  const handleDesignerClick = () => track("style_designer_cta_clicked", { main: main.id, sub: sub?.id ?? null });
 
   return (
     <div className="sq-result">
-      <p className="sq-eyebrow">Your Calyco Style Is</p>
-      <h1 className="sq-result-title">{main.name}</h1>
-      {sub && <p className="sq-result-sub">Your sub-style is: {sub.name}</p>}
-      <p className="sq-result-lede">{main.explanation}</p>
+      <div ref={topRef}>
+        <p className="sq-eyebrow">Your Calyco Style Is</p>
+        <h1 className="sq-result-title">{main.name}</h1>
+        {sub && <p className="sq-result-sub">Your sub-style is: {sub.name}</p>}
+        <p className="sq-result-lede">{main.explanation}</p>
+      </div>
 
       <div className="sq-gallery">
         {main.images.map((src) => (
@@ -255,13 +247,24 @@ function ResultScreen({
       </div>
 
       <div className="sq-cta">
-        <a href="/#contact" className="sq-btn-primary" onClick={handleDesignerClick}>
+        <button type="button" className="sq-btn-primary" onClick={handleDesignerClick}>
           Talk to a Calyco Designer
-        </a>
-        <button type="button" className="sq-btn-secondary" onClick={handleShare}>
-          Share My Style on WhatsApp
         </button>
       </div>
+
+      {mounted &&
+        contactOpen &&
+        createPortal(
+          <div className="sq-contact-overlay" onClick={() => setContactOpen(false)}>
+            <div className="sq-contact-card" onClick={(e) => e.stopPropagation()}>
+              <button type="button" className="sq-contact-close" aria-label="Close" onClick={() => setContactOpen(false)}>
+                ×
+              </button>
+              <ConsultForm />
+            </div>
+          </div>,
+          document.body
+        )}
     </div>
   );
 }

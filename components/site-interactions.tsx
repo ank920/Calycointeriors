@@ -11,9 +11,19 @@ export function SiteInteractions() {
     // ── Header scroll ──
     const header = document.getElementById("header");
     const parallaxEls = document.querySelectorAll<HTMLElement>("[data-parallax]");
+    let lastScrollY = window.scrollY;
     const onScroll = () => {
       const y = window.scrollY;
       header?.classList.toggle("scrolled", y > window.innerHeight * 0.6);
+      // Hide the floating pill the moment you scroll down past the very top
+      // (it otherwise sits on top of page headings/the estimator's stepper),
+      // and bring it straight back on the smallest upward scroll — so it's
+      // never competing with content but is always one swipe-up away.
+      const delta = y - lastScrollY;
+      if (y < 80) header?.classList.remove("header-hidden");
+      else if (delta > 4) header?.classList.add("header-hidden");
+      else if (delta < -4) header?.classList.remove("header-hidden");
+      lastScrollY = y;
       // The hero's background no longer parallaxes off raw scrollY here — the
       // hero is pinned in scroll-engine.tsx for the first viewport-height of
       // scroll, and this effect (unaware of that pin) was sliding the image
@@ -27,6 +37,20 @@ export function SiteInteractions() {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+
+    // ── Hide the floating scroll button once the footer is reachable ──
+    // It's a "scroll further down" affordance, so it stops making sense (and
+    // stops risking sitting on top of footer links/CTAs) the moment there's
+    // nowhere further down to go.
+    const footer = document.querySelector<HTMLElement>(".site-footer");
+    let footerIO: IntersectionObserver | undefined;
+    if (footer) {
+      footerIO = new IntersectionObserver(
+        ([entry]) => document.body.classList.toggle("near-footer", entry.isIntersecting),
+        { threshold: 0 }
+      );
+      footerIO.observe(footer);
+    }
 
     // ── Reveal on scroll ──
     const revealEls = document.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -153,6 +177,8 @@ export function SiteInteractions() {
 
     return () => {
       window.removeEventListener("scroll", onScroll);
+      footerIO?.disconnect();
+      document.body.classList.remove("near-footer");
       revealIO.disconnect();
       countIO.disconnect();
       clearInterval(clockInterval);

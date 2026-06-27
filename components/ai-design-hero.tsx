@@ -118,18 +118,13 @@ export function AIDesignHero() {
             >
               Design Intelligence, Tuned To Your Space.
             </motion.h1>
-            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.4 }} className="ai-hero-sub">
-              A brief, a few reference images and your room dimensions — turned into mood boards, material palettes
-              and layout options, refined by our studio before anything reaches site.
-            </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.55 }}
               className="ai-hero-actions"
             >
-              <a href="/#contact" className="btn-solid">Join the Waitlist</a>
-              <a href="/#work" className="btn-ghost">See Studio Work</a>
+              <a href="/#contact" className="btn-solid">Start Your Project</a>
             </motion.div>
           </div>
 

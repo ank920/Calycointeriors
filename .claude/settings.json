@@ -23,7 +23,18 @@
       "Bash(xargs -r -I{} taskkill //F //PID {})",
       "Bash(npm uninstall *)",
       "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"3d carousel coverflow rotation animation\" --domain ux -n 6)",
-      "Bash(python .claude/skills/ui-ux-pro-max/scripts/search.py \"3d carousel coverflow rotation animation transform performance\" --domain ux -n 6)"
+      "Bash(python .claude/skills/ui-ux-pro-max/scripts/search.py \"3d carousel coverflow rotation animation transform performance\" --domain ux -n 6)",
+      "Bash(cat /tmp/prod-server.log 2>&1 | tail -30)",
+      "Read(//tmp/**)",
+      "PowerShell(Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Process -Name node -ErrorAction SilentlyContinue)",
+      "PowerShell(Stop-Process -Force -ErrorAction SilentlyContinue)",
+      "PowerShell(\"cleared\")",
+      "PowerShell(\"stopped\")",
+      "Bash(cp \"C:\\\\Users\\\\av074\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-av074-Downloads-Calycointeriors\\\\73e6b218-9372-4290-a03d-35962ee3be81\\\\scratchpad\\\\check-header.js\" ./tmp-check-header.js)",
+      "Bash(node tmp-check-header.js)",
+      "Bash(cp \"C:\\\\Users\\\\av074\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-av074-Downloads-Calycointeriors\\\\73e6b218-9372-4290-a03d-35962ee3be81\\\\scratchpad\\\\check-modal.js\" ./tmp-check-modal.js)",
+      "Bash(node tmp-check-modal.js)"
     ],
     "additionalDirectories": [
       "c:\\c\\Users\\av074\\Downloads\\calyco interior"

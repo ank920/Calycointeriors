@@ -55,7 +55,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
     id: "bedroom",
     name: "Bedroom",
     image: "/assets/home%20page/Bedroom.webp",
-    baseImage: "/view/bedroom/base.png",
+    baseImage: "/view/bedroom/base.webp",
     categories: [
       {
         key: "bed",
@@ -66,7 +66,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "bed-tufted-cream",
             name: "Tufted Cream",
             desc: "Soft upholstered headboard, neutral tone",
-            image: "/view/bedroom/bed-1.png",
+            image: "/view/bedroom/bed-1.webp",
             range: [0.65, 0.95],
             overlay: { bottom: 12.4, width: 32.6, left: 51.7 }
           },
@@ -74,7 +74,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "bed-arched-tufted",
             name: "Arched Tufted",
             desc: "Statement arch headboard, deeper tufting",
-            image: "/view/bedroom/bed-2.png",
+            image: "/view/bedroom/bed-2.webp",
             range: [0.8, 1.15],
             overlay: { bottom: 11.7, width: 37.3, left: 50.9 }
           },
@@ -82,7 +82,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "bed-curved-velvet",
             name: "Curved Olive Velvet",
             desc: "Channel-tufted velvet, curved silhouette",
-            image: "/view/bedroom/bed3.png",
+            image: "/view/bedroom/bed3.webp",
             range: [0.85, 1.25],
             overlay: { bottom: 11.5, width: 32.8, left: 50.9 }
           },
@@ -90,7 +90,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "bed-channel-tufted",
             name: "Channel Tufted Cream",
             desc: "Fluted headboard with walnut trim",
-            image: "/view/bedroom/bed4.png",
+            image: "/view/bedroom/bed4.webp",
             range: [0.9, 1.35],
             overlay: { bottom: 12.7, width: 32, left: 50.7 }
           },
@@ -98,7 +98,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "bed-platform-lit",
             name: "Wood Platform with Lighting",
             desc: "Warm wood frame, ambient under-bed glow",
-            image: "/view/bedroom/bed5.png",
+            image: "/view/bedroom/bed5.webp",
             range: [1.1, 1.6],
             overlay: { bottom: 16.3, width: 37, left: 50.1 }
           },
@@ -106,7 +106,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "bed-two-tone",
             name: "Two-Tone Wood & Leather",
             desc: "Walnut frame, leatherette headboard panels",
-            image: "/view/bedroom/bed6.png",
+            image: "/view/bedroom/bed6.webp",
             range: [0.95, 1.4],
             overlay: { bottom: 14.5, width: 37.3, left: 51.5 }
           }
@@ -121,7 +121,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "side-table-wood",
             name: "Wooden Side Table",
             desc: "Warm grain, compact footprint",
-            image: "/view/bedroom/s1.png",
+            image: "/view/bedroom/s1.webp",
             range: [0.08, 0.14],
             overlay: { bottom: 25.4, width: 10.8, left: 30.1, rotateY: -8.8 }
           },
@@ -129,7 +129,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "side-table-marble",
             name: "Marble-Top Side Table",
             desc: "Polished stone top, brass legs",
-            image: "/view/bedroom/s2.png",
+            image: "/view/bedroom/s2.webp",
             range: [0.14, 0.22],
             overlay: { bottom: 25.2, width: 11.3, left: 30.9, rotateY: -4 }
           },
@@ -137,7 +137,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "side-table-3",
             name: "Side Table 3",
             desc: "Additional design option",
-            image: "/view/bedroom/s3.png",
+            image: "/view/bedroom/s3.webp",
             range: [0.1, 0.18],
             overlay: { bottom: 26.8, width: 11.8, left: 31 }
           },
@@ -145,7 +145,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "side-table-4",
             name: "Side Table 4",
             desc: "Additional design option",
-            image: "/view/bedroom/s4.png",
+            image: "/view/bedroom/s4.webp",
             range: [0.1, 0.18],
             overlay: { bottom: 23.5, width: 10, left: 30.6 }
           },
@@ -153,7 +153,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "side-table-5",
             name: "Side Table 5",
             desc: "Additional design option",
-            image: "/view/bedroom/s5.png",
+            image: "/view/bedroom/s5.webp",
             range: [0.1, 0.18],
             overlay: { bottom: 21.8, width: 11.6, left: 30.5 }
           }
@@ -168,7 +168,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "wardrobe-5door-walnut",
             name: "5-Door Walnut Wardrobe",
             desc: "Mixed open shelving, hanging rail & drawers",
-            image: "/view/bedroom/w1.png",
+            image: "/view/bedroom/w1.webp",
             range: [1.3, 1.9],
             overlay: { bottom: 18.1, width: 34, left: 14.2, rotateX: 1.3, rotateY: 44.2 },
             overlayMobile: { bottom: 14.9, width: 31.8, left: 13.7, rotateX: 1.3, rotateY: 49.5, rotateZ: -0.5 }
@@ -177,7 +177,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "wardrobe-3door",
             name: "3-Door Wardrobe",
             desc: "Built-in storage, soft-close fittings",
-            image: "/view/bedroom/w2.png",
+            image: "/view/bedroom/w2.webp",
             range: [1.1, 1.6],
             overlay: { bottom: 17.5, width: 59.4, left: 13.5, rotateY: 52.3, rotateZ: 0.8 },
             overlayMobile: { bottom: 17.7, width: 55.6, left: 15.4, rotateY: 63.8, rotateZ: 0.8 }
@@ -186,7 +186,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "wardrobe-walkin",
             name: "Walk-in Wardrobe",
             desc: "Open layout with dedicated dressing space",
-            image: "/view/bedroom/w3.png",
+            image: "/view/bedroom/w3.webp",
             range: [1.6, 2.7],
             overlay: { bottom: 19.7, width: 60.6, left: 15.5, rotateY: 55.9, rotateZ: 0.8 },
             overlayMobile: { bottom: 16.6, width: 56.7, left: 14.1, rotateY: 62 }
@@ -195,7 +195,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "wardrobe-4",
             name: "Wardrobe Design 4",
             desc: "Additional design option",
-            image: "/view/bedroom/w4.png",
+            image: "/view/bedroom/w4.webp",
             range: [1.2, 1.8],
             overlay: { bottom: 17.3, width: 64.6, left: 15.2, rotateY: 54.9 },
             overlayMobile: { bottom: 14.5, width: 60.4, left: 13.9, rotateY: 62.6 }
@@ -204,7 +204,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "wardrobe-5",
             name: "Wardrobe Design 5",
             desc: "Additional design option",
-            image: "/view/bedroom/w5.png",
+            image: "/view/bedroom/w5.webp",
             range: [1.2, 1.8],
             overlay: { bottom: 16.3, width: 55.6, left: 13.6, rotateY: 49, rotateZ: 0.2 },
             overlayMobile: { bottom: 16.1, width: 52, left: 14.2, rotateY: 62.6 }
@@ -217,8 +217,8 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
     id: "living-room",
     name: "Living Room",
     image: "/assets/home%20page/Living%20Room.webp",
-    baseImage: "/view/living%20room/base%20living%20room.png",
-    baseImageMobile: "/view/living%20room/mobile%20bse%20image.png",
+    baseImage: "/view/living%20room/base%20living%20room.webp",
+    baseImageMobile: "/view/living%20room/mobile%20bse%20image.webp",
     categories: [
       {
         key: "sofa",
@@ -229,7 +229,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "sofa-curved",
             name: "Curved Sofa",
             desc: "Sculptural form with plush comfort",
-            image: "/view/living%20room/so1.png",
+            image: "/view/living%20room/so1.webp",
             range: [1.1, 1.6],
             overlay: { bottom: -1.2, width: 40.4, left: 49.2, rotateX: 17.6, rotateY: 0.5, rotateZ: -1.4 },
             overlayMobile: { bottom: -6, width: 45, left: 69, rotateX: 17.6, rotateY: 0.5, rotateZ: -1.4 }
@@ -238,7 +238,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "sofa-minimal",
             name: "Minimal Sofa",
             desc: "Low-profile contemporary design",
-            image: "/view/living%20room/so2.png",
+            image: "/view/living%20room/so2.webp",
             range: [0.85, 1.3],
             default: true,
             overlay: { bottom: -1.3, width: 45, left: 50.9 },
@@ -248,7 +248,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "sofa-luxe-sectional",
             name: "Luxe Sectional",
             desc: "Spacious seating, refined luxury",
-            image: "/view/living%20room/so3.png",
+            image: "/view/living%20room/so3.webp",
             range: [1.6, 2.4],
             overlay: { bottom: -3.1, width: 45, left: 51, rotateX: -0.8 },
             overlayMobile: { bottom: -5.7, width: 49.2, left: 70.6, rotateX: -0.8 }
@@ -257,7 +257,7 @@ export const ESTIMATOR_SPACES: EstimatorSpace[] = [
             id: "sofa-soft-edge",
             name: "Soft Edge Sofa",
             desc: "Cozy curves, inviting comfort",
-            image: "/view/living%20room/so4.png",
+            image: "/view/living%20room/so4.webp",
             range: [0.95, 1.45],
             overlay: { bottom: -6.9, width: 45, left: 50.5 },
             overlayMobile: { bottom: -10, width: 52.1, left: 69.4 }
