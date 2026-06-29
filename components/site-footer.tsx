@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+import { submitToWeb3Forms } from "@/lib/web3forms";
+
 function InstagramIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
@@ -49,6 +52,28 @@ function SendIcon() {
 }
 
 export function SiteFooter() {
+  const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  const onNewsletterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const email = String(new FormData(form).get("email") || "");
+    if (!email) return;
+
+    setNewsletterStatus("sending");
+    try {
+      await submitToWeb3Forms(
+        "New Newsletter Signup — Calyco Interiors",
+        `Email: ${email}`,
+        "Calyco Interiors — Newsletter"
+      );
+      setNewsletterStatus("sent");
+      form.reset();
+    } catch {
+      setNewsletterStatus("error");
+    }
+  };
+
   return (
     <footer
       className="site-footer"
@@ -66,9 +91,16 @@ export function SiteFooter() {
               Designing homes people love living in. Premium interiors with complete transparency.
             </p>
             <p className="footer-heading" style={{ marginTop: "30px" }}>Newsletter</p>
-            <form className="footer-newsletter" onSubmit={(e) => e.preventDefault()}>
-              <input type="email" placeholder="Your email address" required aria-label="Email address" />
-              <button type="submit" aria-label="Subscribe">
+            <form className="footer-newsletter" onSubmit={onNewsletterSubmit}>
+              <input
+                type="email"
+                name="email"
+                placeholder={newsletterStatus === "sent" ? "Subscribed ✓" : "Your email address"}
+                required
+                aria-label="Email address"
+                disabled={newsletterStatus === "sending"}
+              />
+              <button type="submit" aria-label="Subscribe" disabled={newsletterStatus === "sending"}>
                 <SendIcon />
               </button>
             </form>

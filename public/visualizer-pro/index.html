@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calyco AI Interior Studio Pro</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="app">
+    <aside class="panel">
+      <div class="brand">
+        <h1>Calyco Interiors</h1>
+        <p>AI-powered room visualizer using photorealistic assets</p>
+        <select id="roomSelect" class="room-switcher">
+          <option value="bedroom">Bedroom</option>
+          <option value="living_room">Living Room</option>
+        </select>
+      </div>
+
+      <div class="tabs" id="categoryTabs">
+        <button class="tab-btn active" data-target="layer1Section" id="tab1">Beds</button>
+        <button class="tab-btn" data-target="layer2Section" id="tab2">Tables</button>
+        <button class="tab-btn" data-target="layer3Section" id="tab3">Wardrobes</button>
+      </div>
+
+      <section id="layer1Section" class="category-section active">
+        <div class="grid" id="layer1Grid"></div>
+      </section>
+
+      <section id="layer2Section" class="category-section" style="display: none;">
+        <div class="grid" id="layer2Grid"></div>
+      </section>
+
+      <section id="layer3Section" class="category-section" style="display: none;">
+        <div class="grid" id="layer3Grid"></div>
+      </section>
+
+      <section class="adjuster">
+        <div class="section-head">
+          <h2>Manual Fit</h2>
+          <span id="selectedLabel">Bed selected</span>
+        </div>
+
+        <div class="layer-select-container" style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-size: 13px; font-weight: 600; color: var(--text-primary);">Select layer</span>
+          <select id="layerSelect">
+            <option value="layer1" id="optLayer1">Bed</option>
+            <option value="layer2Right" id="optLayer2Right">Right Side Table</option>
+            <option value="layer2Left" id="optLayer2Left">Left Side Table</option>
+            <option value="layer3" id="optLayer3">Wardrobe</option>
+          </select>
+        </div>
+
+        <div class="accordions">
+          <details open>
+            <summary>Transform</summary>
+            <div class="mini-grid">
+              <label>X <input id="xRange" type="range" min="-500" max="1500" value="0"></label>
+              <label>Y <input id="yRange" type="range" min="-100" max="1000" value="0"></label>
+              <label>Scale <input id="scaleRange" type="range" min="0.4" max="1.8" step="0.01" value="1"></label>
+            </div>
+          </details>
+          <details>
+            <summary>3D Rotation</summary>
+            <div class="mini-grid">
+              <label>Tilt <input id="rotateXRange" type="range" min="-85" max="85" step="1" value="0"></label>
+              <label>Pan <input id="rotateYRange" type="range" min="-85" max="85" step="1" value="0"></label>
+              <label>Roll <input id="rotateZRange" type="range" min="-45" max="45" step="1" value="0"></label>
+            </div>
+          </details>
+          <details>
+            <summary>Lighting</summary>
+            <div class="mini-grid">
+              <label>Brightness <input id="brightRange" type="range" min="0.65" max="1.35" step="0.01" value="1"></label>
+              <label>Contrast <input id="contrastRange" type="range" min="0.75" max="1.35" step="0.01" value="1"></label>
+              <label>Shadow <input id="shadowRange" type="range" min="0" max="0.65" step="0.01" value="0.3"></label>
+            </div>
+          </details>
+        </div>
+
+        <div class="row-actions">
+          <button id="autoFitBtn">AI Auto Fit</button>
+          <button id="resetLayerBtn">Reset Layer</button>
+        </div>
+        <p class="micro">Tip: click an item/layer, then drag it directly inside the room.</p>
+      </section>
+
+      <div class="actions">
+        <button id="randomBtn" class="primary">AI Randomize Design</button>
+        <button id="resetBtn">Reset All</button>
+      </div>
+
+
+    </aside>
+
+    <section class="viewer">
+      <header class="topbar">
+        <div>
+          <strong>Professional Interior Studio</strong>
+          <span id="status">Loading assets...</span>
+        </div>
+        <div class="top-actions">
+          <label style="display: none;"><input type="checkbox" id="outlineToggle"> Show boxes</label>
+          <label><input type="checkbox" id="rightOnlyToggle"> One side table</label>
+        </div>
+      </header>
+
+      <div class="canvas-shell" id="canvasShell">
+        <div class="scene" id="scene">
+          <canvas id="roomCanvas" width="1586" height="992"></canvas>
+          <img id="overlayLayer3" class="overlay-item" />
+          <img id="overlayLayer2Left" class="overlay-item" />
+          <img id="overlayLayer2Right" class="overlay-item" />
+          <img id="overlayLayer1" class="overlay-item" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

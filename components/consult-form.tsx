@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { submitToWeb3Forms } from "@/lib/web3forms";
 
 const REQUIREMENTS = ["1 BHK", "2 BHK", "3 BHK", "4+ BHK / Duplex", "Modular Kitchen", "Wardrobe", "Other"];
 const CITIES = ["Delhi", "Mumbai", "Pune", "Bengaluru"];
@@ -17,6 +18,42 @@ export function ConsultForm() {
   const [city, setCity] = useState("");
   const [cityOpen, setCityOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get("name") || "");
+    const phone = String(data.get("tel") || "");
+    const email = String(data.get("email") || "");
+    const requirement = data.getAll("requirement").map(String);
+
+    if (!phone || !email || !city) {
+      setStatus("error");
+      return;
+    }
+
+    setStatus("sending");
+    try {
+      await submitToWeb3Forms(
+        `New Consultation Request — ${name || "Customer"} (${city})`,
+        [
+          `Name: ${name || "—"}`,
+          `Phone: ${phone}`,
+          `Email: ${email}`,
+          `City: ${city}`,
+          `Requirement: ${requirement.length ? requirement.join(", ") : "—"}`
+        ].join("\n"),
+        "Calyco Interiors — Consultation Form"
+      );
+      setStatus("sent");
+      form.reset();
+      setCity("");
+    } catch {
+      setStatus("error");
+    }
+  };
 
   useEffect(() => {
     const onClickOutside = (e: MouseEvent) => {
@@ -29,7 +66,7 @@ export function ConsultForm() {
   }, []);
 
   return (
-    <form className="consult-form" data-reveal="up" data-delay="100" onSubmit={(e) => e.preventDefault()}>
+    <form className="consult-form" data-reveal="up" data-delay="100" onSubmit={onSubmit}>
       <p className="consult-form-eyebrow">Get Started</p>
       <h3 className="consult-form-title">Book A Free Visit</h3>
 
@@ -101,10 +138,16 @@ export function ConsultForm() {
         </div>
       </div>
 
-      <button type="submit" className="btn-solid">
-        Submit Your Details <span aria-hidden="true">→</span>
+      <button type="submit" className="btn-solid" disabled={status === "sending"}>
+        {status === "sending" ? "Sending…" : "Submit Your Details"} <span aria-hidden="true">→</span>
       </button>
-      <p className="consult-note">No spam. A designer will call within 24 hours.</p>
+      {status === "sent" && <p className="consult-note">Thanks! A designer will call within 24 hours.</p>}
+      {status === "error" && (
+        <p className="consult-note" style={{ color: "#c0392b" }}>
+          Please fill in phone, email and city, then try again.
+        </p>
+      )}
+      {status === "idle" && <p className="consult-note">No spam. A designer will call within 24 hours.</p>}
     </form>
   );
 }

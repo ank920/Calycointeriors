@@ -4,7 +4,7 @@
 // (degrees, default 0) tilt/turn/roll a flat cutout in 3D to match a wall
 // or floor receding in perspective — e.g. a wardrobe against a side wall,
 // not just floor pieces shot straight-on.
-export type ItemOverlay = { bottom: number; width: number; left: number; rotateX?: number; rotateY?: number; rotateZ?: number };
+export type ItemOverlay = { bottom: number; width: number; left: number; rotateX?: number; rotateY?: number; rotateZ?: number; scale?: number; brightness?: number; contrast?: number; shadow?: number };
 
 export type EstimatorItem = {
   id: string;
@@ -14,7 +14,7 @@ export type EstimatorItem = {
   range: [number, number]; // INR, in lakhs
   default?: true;
   // Lets this exact item be composited live onto the space's empty baseImage
-  // (see RoomVisualizer) instead of just shown as a list thumbnail — only
+  // (see space-estimator.tsx) instead of just shown as a list thumbnail — only
   // set where we actually have a cut-out asset positioned for overlay.
   overlay?: ItemOverlay;
   // Separate calibration for the mobile stage (its photo crop is a different

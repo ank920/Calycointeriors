@@ -1,0 +1,268 @@
+{
+  "base": {
+    "src": "assets/living_room/living room base image.png",
+    "width": 1586,
+    "height": 992
+  },
+  "layer1": [
+    {
+      "id": "sofa-1",
+      "name": "Sofa 1",
+      "description": "Premium Sofa",
+      "src": "assets/living_room/so1.png",
+      "thumb": "assets/living_room/so1.png",
+      "placement": {
+        "x": 400,
+        "y": 450,
+        "w": 700,
+        "h": 525,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    },
+    {
+      "id": "sofa-2",
+      "name": "Sofa 2",
+      "description": "Premium Sofa",
+      "src": "assets/living_room/so2.png",
+      "thumb": "assets/living_room/so2.png",
+      "placement": {
+        "x": 400,
+        "y": 450,
+        "w": 700,
+        "h": 525,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    },
+    {
+      "id": "sofa-3",
+      "name": "Sofa 3",
+      "description": "Premium Sofa",
+      "src": "assets/living_room/so3.png",
+      "thumb": "assets/living_room/so3.png",
+      "placement": {
+        "x": 400,
+        "y": 450,
+        "w": 700,
+        "h": 525,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    },
+    {
+      "id": "sofa-4",
+      "name": "Sofa 4",
+      "description": "Premium Sofa",
+      "src": "assets/living_room/so4.png",
+      "thumb": "assets/living_room/so4.png",
+      "placement": {
+        "x": 400,
+        "y": 450,
+        "w": 700,
+        "h": 525,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    },
+    {
+      "id": "sofa-5",
+      "name": "Sofa 5",
+      "description": "Premium Sofa",
+      "src": "assets/living_room/so5.png",
+      "thumb": "assets/living_room/so5.png",
+      "placement": {
+        "x": 400,
+        "y": 450,
+        "w": 700,
+        "h": 525,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    }
+  ],
+  "layer2": [
+    {
+      "id": "ctable-1",
+      "name": "Coffee Table 1",
+      "description": "Modern Table",
+      "src": "assets/living_room/ct1.png",
+      "thumb": "assets/living_room/ct1.png",
+      "placement": {
+        "x": 550,
+        "y": 700,
+        "w": 400,
+        "h": 400,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    },
+    {
+      "id": "ctable-2",
+      "name": "Coffee Table 2",
+      "description": "Modern Table",
+      "src": "assets/living_room/ct2.png",
+      "thumb": "assets/living_room/ct2.png",
+      "placement": {
+        "x": 550,
+        "y": 700,
+        "w": 400,
+        "h": 400,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    },
+    {
+      "id": "ctable-3",
+      "name": "Coffee Table 3",
+      "description": "Modern Table",
+      "src": "assets/living_room/ct3.png",
+      "thumb": "assets/living_room/ct3.png",
+      "placement": {
+        "x": 550,
+        "y": 700,
+        "w": 400,
+        "h": 300,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    },
+    {
+      "id": "ctable-4",
+      "name": "Coffee Table 4",
+      "description": "Modern Table",
+      "src": "assets/living_room/ct4.png",
+      "thumb": "assets/living_room/ct4.png",
+      "placement": {
+        "x": 550,
+        "y": 700,
+        "w": 400,
+        "h": 300,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    },
+    {
+      "id": "ctable-5",
+      "name": "Coffee Table 5",
+      "description": "Modern Table",
+      "src": "assets/living_room/ct5.png",
+      "thumb": "assets/living_room/ct5.png",
+      "placement": {
+        "x": 550,
+        "y": 700,
+        "w": 400,
+        "h": 300,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    },
+    {
+      "id": "ctable-6",
+      "name": "Coffee Table 6",
+      "description": "Modern Table",
+      "src": "assets/living_room/ct6.png",
+      "thumb": "assets/living_room/ct6.png",
+      "placement": {
+        "x": 550,
+        "y": 700,
+        "w": 400,
+        "h": 300,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    }
+  ],
+  "layer3": [
+    {
+      "id": "chair-1",
+      "name": "Armchair 1",
+      "description": "Lounge Chair",
+      "src": "assets/living_room/c1.png",
+      "thumb": "assets/living_room/c1.png",
+      "placement": {
+        "x": 1100,
+        "y": 550,
+        "w": 300,
+        "h": 374,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    },
+    {
+      "id": "chair-2",
+      "name": "Armchair 2",
+      "description": "Lounge Chair",
+      "src": "assets/living_room/c2.png",
+      "thumb": "assets/living_room/c2.png",
+      "placement": {
+        "x": 1100,
+        "y": 550,
+        "w": 300,
+        "h": 374,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    },
+    {
+      "id": "chair-3",
+      "name": "Armchair 3",
+      "description": "Lounge Chair",
+      "src": "assets/living_room/c3.png",
+      "thumb": "assets/living_room/c3.png",
+      "placement": {
+        "x": 1100,
+        "y": 550,
+        "w": 300,
+        "h": 374,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    },
+    {
+      "id": "chair-4",
+      "name": "Armchair 4",
+      "description": "Lounge Chair",
+      "src": "assets/living_room/c4.png",
+      "thumb": "assets/living_room/c4.png",
+      "placement": {
+        "x": 1100,
+        "y": 550,
+        "w": 300,
+        "h": 374,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    },
+    {
+      "id": "chair-5",
+      "name": "Armchair 5",
+      "description": "Lounge Chair",
+      "src": "assets/living_room/c5.png",
+      "thumb": "assets/living_room/c5.png",
+      "placement": {
+        "x": 1100,
+        "y": 550,
+        "w": 300,
+        "h": 374,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    },
+    {
+      "id": "chair-6",
+      "name": "Armchair 6",
+      "description": "Lounge Chair",
+      "src": "assets/living_room/c6.png",
+      "thumb": "assets/living_room/c6.png",
+      "placement": {
+        "x": 1100,
+        "y": 550,
+        "w": 300,
+        "h": 374,
+        "opacity": 1,
+        "shadow": 0.3
+      }
+    }
+  ]
+}

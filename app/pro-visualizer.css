@@ -1,0 +1,428 @@
+:root {
+  --bg: #fdfcfb;
+  --bg-panel: rgba(255, 255, 255, 0.85);
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-card-hover: rgba(255, 255, 255, 1);
+  --border: rgba(0, 0, 0, 0.08);
+  --border-active: rgba(124, 58, 237, 0.6);
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --accent: #8b5cf6;
+  --accent-glow: rgba(139, 92, 246, 0.25);
+  --btn-primary: linear-gradient(135deg, #8b5cf6, #6366f1);
+  --btn-primary-hover: linear-gradient(135deg, #7c3aed, #4f46e5);
+}
+* { box-sizing: border-box; }
+.pro-vis html, body  {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+}
+.pro-vis button, input, select  { font: inherit; }
+.pro-vis button  {
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--text-primary);
+  border-radius: 12px;
+  padding: 11px 16px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+.pro-vis button:hover  {
+  background: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+.pro-vis button:active  { transform: translateY(1px); box-shadow: none; }
+.pro-vis .primary  {
+  background: var(--btn-primary);
+  border: none;
+  color: #fff;
+  box-shadow: 0 8px 24px var(--accent-glow);
+  font-weight: 500;
+}
+.pro-vis .primary:hover  {
+  background: var(--btn-primary-hover);
+  box-shadow: 0 12px 32px var(--accent-glow);
+  color: #fff;
+}
+.pro-vis .app  {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 388px 1fr;
+}
+.pro-vis .panel  {
+  background: var(--bg-panel);
+  border-right: 1px solid var(--border);
+  padding: 32px 28px;
+  overflow: auto;
+  box-shadow: 8px 0 40px rgba(0, 0, 0, 0.03);
+  z-index: 5;
+  backdrop-filter: blur(24px);
+}
+.pro-vis .brand  { margin-bottom: 32px; }
+.pro-vis .brand h1  {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin: 0 0 6px;
+  background: linear-gradient(to right, #0f172a, #475569);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.pro-vis .brand p  {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.pro-vis section  { margin: 32px 0; }
+.pro-vis .section-head  {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.pro-vis .section-head h2  {
+  font-size: 15px;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.pro-vis .section-head span  {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.pro-vis .grid  {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.pro-vis .card  {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--bg-card);
+  padding: 12px;
+  text-align: left;
+  min-height: 164px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+}
+.pro-vis .card:hover  {
+  background: var(--bg-card-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+}
+.pro-vis .card.active  {
+  border-color: var(--border-active);
+  background: rgba(139, 92, 246, 0.03);
+  box-shadow: 0 0 0 1px var(--border-active), 0 12px 32px var(--accent-glow);
+}
+.pro-vis .card img  {
+  width: 100%;
+  height: 106px;
+  object-fit: contain;
+  background: rgba(0,0,0,0.015);
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+.pro-vis .card strong  {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+.pro-vis .card small  {
+  display: block;
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+.pro-vis .adjuster  {
+  background: rgba(0, 0, 0, 0.015);
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 20px;
+  margin-top: 16px;
+  box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
+}
+.pro-vis .adjuster label  {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+.pro-vis .adjuster select  {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text-primary);
+  margin-top: 6px;
+  appearance: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+.pro-vis .adjuster select:focus  {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+.pro-vis .mini-grid  {
+  display: grid;
+  gap: 12px;
+}
+.pro-vis .mini-grid label  {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.pro-vis .mini-grid input[type="range"]  {
+  width: 65%;
+  accent-color: var(--accent);
+  cursor: ew-resize;
+  background: rgba(0,0,0,0.06);
+  height: 4px;
+  border-radius: 2px;
+  -webkit-appearance: none;
+}
+.pro-vis .mini-grid input[type="range"]::-webkit-slider-thumb  {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.pro-vis .row-actions  {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+.pro-vis .micro  {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 16px 0 0;
+}
+.pro-vis .actions  {
+  display: grid;
+  gap: 14px;
+}
+.pro-vis .note  {
+  margin-top: 24px;
+  padding: 16px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 16px;
+  background: rgba(139, 92, 246, 0.04);
+  color: #6d28d9;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.pro-vis .viewer  {
+  display: grid;
+  grid-template-rows: 72px 1fr;
+  min-width: 0;
+  background: #f8fafc;
+}
+.pro-vis .topbar  {
+  height: 72px;
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
+  backdrop-filter: blur(24px);
+  z-index: 2;
+}
+.pro-vis .topbar strong  {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.pro-vis .topbar span  {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 12px;
+  margin-top: 4px;
+}
+.pro-vis .top-actions  {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+}
+.pro-vis .top-actions label  {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+}
+.pro-vis .top-actions input[type="checkbox"]  {
+  accent-color: var(--accent);
+  width: 16px;
+  height: 16px;
+}
+.pro-vis .canvas-shell  {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 20%, #fefcf9, #e9e4df);
+}
+.pro-vis .scene  {
+  position: relative;
+  display: block;
+  width: min(100%, calc((100vh - 72px) * 1.598));
+  height: auto;
+  max-height: calc(100vh - 72px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0,0,0,0.03);
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.pro-vis .scene canvas  {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+.pro-vis .scene canvas:active  { cursor: grabbing; }
+.pro-vis .overlay-item  {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  transition: filter 0.2s ease, opacity 0.2s ease;
+}
+@media(max-width: 960px) {
+  html, body { overflow: auto; }
+  .app { display: block; height: auto; }
+  .panel { border-right: 0; border-bottom: 1px solid var(--border); }
+  .viewer { height: 72vh; }
+}
+
+/* Custom Scrollbar for Panel */
+.pro-vis .panel::-webkit-scrollbar  {
+  width: 6px;
+}
+.pro-vis .panel::-webkit-scrollbar-track  {
+  background: transparent;
+}
+.pro-vis .panel::-webkit-scrollbar-thumb  {
+  background: rgba(15, 23, 42, 0.15);
+  border-radius: 10px;
+}
+.pro-vis .panel::-webkit-scrollbar-thumb:hover  {
+  background: rgba(15, 23, 42, 0.25);
+}
+
+/* Accordions */
+.pro-vis .accordions  {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+.pro-vis details  {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  transition: all 0.2s ease;
+}
+.pro-vis details:hover  {
+  border-color: rgba(139, 92, 246, 0.3);
+}
+.pro-vis summary  {
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  color: var(--text-primary);
+}
+.pro-vis summary::-webkit-details-marker  {
+  display: none;
+}
+.pro-vis summary::after  {
+  content: '+';
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.pro-vis details[open] summary::after  {
+  transform: rotate(45deg);
+  color: var(--accent);
+}
+.pro-vis details[open] .mini-grid  {
+  padding: 0 16px 16px 16px;
+}
+
+/* Canvas Shadow Enhancement */
+.pro-vis .scene  {
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05), 0 30px 80px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Tabs */
+.pro-vis .tabs  {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  background: rgba(0,0,0,0.03);
+  padding: 6px;
+  border-radius: 14px;
+}
+.pro-vis .tab-btn  {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 0;
+  border-radius: 10px;
+  box-shadow: none;
+  backdrop-filter: none;
+  transition: all 0.2s;
+}
+.pro-vis .tab-btn:hover  {
+  background: rgba(0,0,0,0.04);
+  color: var(--text-primary);
+  transform: none;
+  box-shadow: none;
+}
+.pro-vis .tab-btn.active  {
+  background: #fff;
+  color: var(--accent);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  font-weight: 600;
+}
+.pro-vis .tab-btn.active:hover  {
+  background: #fff;
+}

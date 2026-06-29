@@ -1,0 +1,397 @@
+{
+  "base": {
+    "src": "assets/base.png",
+    "width": 1586,
+    "height": 992
+  },
+  "layer1": [
+    {
+      "id": "bed-new",
+      "name": "Modern Bed",
+      "description": "new imported bed asset",
+      "src": "assets/b1.png",
+      "thumb": "assets/b1.png",
+      "placement": {
+        "x": 450,
+        "y": 510,
+        "w": 600,
+        "h": 450,
+        "opacity": 1,
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "shadow": 0.3,
+        "rotation": 0,
+        "rotateX": 0,
+        "rotateY": 0,
+        "rotateZ": 0
+      }
+    },
+    {
+      "id": "bed-2",
+      "name": "Style 2 Bed",
+      "description": "AI Generated Bed Asset",
+      "src": "assets/b2.png",
+      "thumb": "assets/b2.png",
+      "placement": {
+        "x": 450,
+        "y": 510,
+        "w": 600,
+        "h": 450,
+        "opacity": 1,
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "shadow": 0.3,
+        "rotation": 0,
+        "rotateX": 0,
+        "rotateY": 0,
+        "rotateZ": 0
+      }
+    },
+    {
+      "id": "bed-3",
+      "name": "Style 3 Bed",
+      "description": "AI Generated Bed Asset",
+      "src": "assets/b3.png",
+      "thumb": "assets/b3.png",
+      "placement": {
+        "x": 450,
+        "y": 510,
+        "w": 600,
+        "h": 450,
+        "opacity": 1,
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "shadow": 0.3,
+        "rotation": 0,
+        "rotateX": 0,
+        "rotateY": 0,
+        "rotateZ": 0
+      }
+    },
+    {
+      "id": "bed-4",
+      "name": "Style 4 Bed",
+      "description": "AI Generated Bed Asset",
+      "src": "assets/b6.png",
+      "thumb": "assets/b6.png",
+      "placement": {
+        "x": 450,
+        "y": 510,
+        "w": 600,
+        "h": 450,
+        "opacity": 1,
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "shadow": 0.3,
+        "rotation": 0,
+        "rotateX": 0,
+        "rotateY": 0,
+        "rotateZ": 0
+      }
+    },
+    {
+      "id": "bed-5",
+      "name": "Style 5 Bed",
+      "description": "AI Generated Bed Asset",
+      "src": "assets/b7.png",
+      "thumb": "assets/b7.png",
+      "placement": {
+        "x": 450,
+        "y": 510,
+        "w": 600,
+        "h": 450,
+        "opacity": 1,
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "shadow": 0.3,
+        "rotation": 0,
+        "rotateX": 0,
+        "rotateY": 0,
+        "rotateZ": 0
+      }
+    }
+  ],
+  "layer2": [
+    {
+      "id": "table-new",
+      "name": "Modern Side Table",
+      "description": "new imported side table asset",
+      "right": "assets/s1.png",
+      "left": "assets/s1.png",
+      "thumb": "assets/s1.png",
+      "placement": {
+        "left": {
+          "x": 360,
+          "y": 650,
+          "w": 150,
+          "h": 220,
+          "rotation": 0,
+          "rotateX": 0,
+          "rotateY": 0,
+          "rotateZ": 0
+        },
+        "right": {
+          "x": 1050,
+          "y": 650,
+          "w": 150,
+          "h": 220,
+          "rotation": 0,
+          "rotateX": 0,
+          "rotateY": 0,
+          "rotateZ": 0
+        },
+        "opacity": 1,
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "shadow": 0.25
+      }
+    },
+    {
+      "id": "table-2",
+      "name": "Style 2 Side Table",
+      "description": "AI Generated Side Table Asset",
+      "right": "assets/w2.png",
+      "left": "assets/w2.png",
+      "thumb": "assets/w2.png",
+      "placement": {
+        "left": {
+          "x": 360,
+          "y": 650,
+          "w": 150,
+          "h": 220,
+          "rotation": 0,
+          "rotateX": 0,
+          "rotateY": 0,
+          "rotateZ": 0
+        },
+        "right": {
+          "x": 1050,
+          "y": 650,
+          "w": 150,
+          "h": 220,
+          "rotation": 0,
+          "rotateX": 0,
+          "rotateY": 0,
+          "rotateZ": 0
+        },
+        "opacity": 1,
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "shadow": 0.25
+      },
+      "src": "assets/w2.png"
+    },
+    {
+      "id": "table-3",
+      "name": "Style 3 Side Table",
+      "description": "AI Generated Side Table Asset",
+      "right": "assets/w3.png",
+      "left": "assets/w3.png",
+      "thumb": "assets/w3.png",
+      "placement": {
+        "left": {
+          "x": 360,
+          "y": 650,
+          "w": 150,
+          "h": 220,
+          "rotation": 0,
+          "rotateX": 0,
+          "rotateY": 0,
+          "rotateZ": 0
+        },
+        "right": {
+          "x": 1050,
+          "y": 650,
+          "w": 150,
+          "h": 220,
+          "rotation": 0,
+          "rotateX": 0,
+          "rotateY": 0,
+          "rotateZ": 0
+        },
+        "opacity": 1,
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "shadow": 0.25
+      },
+      "src": "assets/w3.png"
+    },
+    {
+      "id": "table-4",
+      "name": "Style 4 Side Table",
+      "description": "AI Generated Side Table Asset",
+      "right": "assets/w4.png",
+      "left": "assets/w4.png",
+      "thumb": "assets/w4.png",
+      "placement": {
+        "left": {
+          "x": 360,
+          "y": 650,
+          "w": 150,
+          "h": 220,
+          "rotation": 0,
+          "rotateX": 0,
+          "rotateY": 0,
+          "rotateZ": 0
+        },
+        "right": {
+          "x": 1050,
+          "y": 650,
+          "w": 150,
+          "h": 220,
+          "rotation": 0,
+          "rotateX": 0,
+          "rotateY": 0,
+          "rotateZ": 0
+        },
+        "opacity": 1,
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "shadow": 0.25
+      },
+      "src": "assets/w4.png"
+    },
+    {
+      "id": "table-5",
+      "name": "Style 5 Side Table",
+      "description": "AI Generated Side Table Asset",
+      "right": "assets/w5.png",
+      "left": "assets/w5.png",
+      "thumb": "assets/w5.png",
+      "placement": {
+        "left": {
+          "x": 360,
+          "y": 650,
+          "w": 150,
+          "h": 220,
+          "rotation": 0,
+          "rotateX": 0,
+          "rotateY": 0,
+          "rotateZ": 0
+        },
+        "right": {
+          "x": 1050,
+          "y": 650,
+          "w": 150,
+          "h": 220,
+          "rotation": 0,
+          "rotateX": 0,
+          "rotateY": 0,
+          "rotateZ": 0
+        },
+        "opacity": 1,
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "shadow": 0.25
+      },
+      "src": "assets/w5.png"
+    }
+  ],
+  "layer3": [
+    {
+      "id": "wardrobe-new",
+      "name": "Modern Wardrobe",
+      "description": "new imported wardrobe asset",
+      "src": "assets/w1.png",
+      "thumb": "assets/w1.png",
+      "placement": {
+        "x": -320,
+        "y": 220,
+        "w": 760,
+        "h": 676,
+        "opacity": 1,
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "shadow": 0.3,
+        "rotation": 0,
+        "rotateX": 0,
+        "rotateY": 0,
+        "rotateZ": 0
+      }
+    },
+    {
+      "id": "wardrobe-2",
+      "name": "Style 2 Wardrobe",
+      "description": "AI Generated Wardrobe Asset",
+      "src": "assets/b4.png",
+      "thumb": "assets/b4.png",
+      "placement": {
+        "x": -320,
+        "y": 220,
+        "w": 760,
+        "h": 676,
+        "opacity": 1,
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "shadow": 0.3,
+        "rotation": 0,
+        "rotateX": 0,
+        "rotateY": 0,
+        "rotateZ": 0
+      }
+    },
+    {
+      "id": "wardrobe-3",
+      "name": "Style 3 Wardrobe",
+      "description": "AI Generated Wardrobe Asset",
+      "src": "assets/b5.png",
+      "thumb": "assets/b5.png",
+      "placement": {
+        "x": -320,
+        "y": 220,
+        "w": 760,
+        "h": 676,
+        "opacity": 1,
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "shadow": 0.3,
+        "rotation": 0,
+        "rotateX": 0,
+        "rotateY": 0,
+        "rotateZ": 0
+      }
+    },
+    {
+      "id": "wardrobe-4",
+      "name": "Style 4 Wardrobe",
+      "description": "AI Generated Wardrobe Asset",
+      "src": "assets/b8.png",
+      "thumb": "assets/b8.png",
+      "placement": {
+        "x": -320,
+        "y": 220,
+        "w": 760,
+        "h": 676,
+        "opacity": 1,
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "shadow": 0.3,
+        "rotation": 0,
+        "rotateX": 0,
+        "rotateY": 0,
+        "rotateZ": 0
+      }
+    },
+    {
+      "id": "wardrobe-5",
+      "name": "Style 5 Wardrobe",
+      "description": "AI Generated Wardrobe Asset",
+      "src": "assets/b9.png",
+      "thumb": "assets/b9.png",
+      "placement": {
+        "x": -320,
+        "y": 220,
+        "w": 760,
+        "h": 676,
+        "opacity": 1,
+        "brightness": 1.0,
+        "contrast": 1.0,
+        "shadow": 0.3,
+        "rotation": 0,
+        "rotateX": 0,
+        "rotateY": 0,
+        "rotateZ": 0
+      }
+    }
+  ]
+}

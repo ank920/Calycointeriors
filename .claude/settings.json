@@ -34,7 +34,14 @@
       "Bash(cp \"C:\\\\Users\\\\av074\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-av074-Downloads-Calycointeriors\\\\73e6b218-9372-4290-a03d-35962ee3be81\\\\scratchpad\\\\check-header.js\" ./tmp-check-header.js)",
       "Bash(node tmp-check-header.js)",
       "Bash(cp \"C:\\\\Users\\\\av074\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-av074-Downloads-Calycointeriors\\\\73e6b218-9372-4290-a03d-35962ee3be81\\\\scratchpad\\\\check-modal.js\" ./tmp-check-modal.js)",
-      "Bash(node tmp-check-modal.js)"
+      "Bash(node tmp-check-modal.js)",
+      "Bash(xargs grep -liE \"nodemailer|resend|smtp|sendmail|mailto|EMAIL_\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/ ; tail -40 /tmp/dev.log)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3001/)",
+      "Bash(curl -s -X POST http://localhost:3001/api/contact -H \"Content-Type: application/json\" -d '{\"type\":\"consultation\",\"phone\":\"9999999999\",\"email\":\"a@b.com\",\"city\":\"Delhi\"}')",
+      "Bash(rm -f app/api/contact/route.ts lib/mailer.ts .env.example)",
+      "Bash(rmdir app/api/contact)",
+      "Bash(curl -s -X POST https://api.web3forms.com/submit -H \"Content-Type: application/json\" -H \"Accept: application/json\" -d '{\"access_key\":\"52da37be-e058-4a07-92c1-a07f95c25f6b\",\"to\":\"calycopaints@gmail.com\",\"subject\":\"Test - Calyco Interiors wiring check\",\"from_name\":\"Calyco Interiors - Test\",\"message\":\"This is a test message confirming the Calyco Interiors site forms are wired to Web3Forms correctly.\"}')"
     ],
     "additionalDirectories": [
       "c:\\c\\Users\\av074\\Downloads\\calyco interior"

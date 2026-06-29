@@ -3,7 +3,6 @@ import { CustomCursor, SiteInteractions } from "@/components/site-interactions";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ScrollEngine } from "@/components/scroll-engine";
-import { SpaceEstimator } from "@/components/space-estimator";
 import { AIDesignHero } from "@/components/ai-design-hero";
 import { AIDesignTagline } from "@/components/ai-design-tagline";
 
@@ -44,8 +43,14 @@ export default function AIDesignPage() {
       {/* ═══ ANIMATED TAGLINE ═══ */}
       <AIDesignTagline />
 
-      {/* ═══ INSTANT ESTIMATOR ═══ */}
-      <SpaceEstimator />
+      {/* ═══ PRO VISUALIZER ═══ */}
+      <section style={{ width: "100%", height: "100vh", position: "relative", zIndex: 10 }}>
+        <iframe 
+          src="/visualizer-pro/index.html" 
+          style={{ width: "100%", height: "100%", border: "none" }}
+          title="Calyco AI Interior Studio Pro"
+        />
+      </section>
 
       {/* ═══ FEATURES ═══ */}
       <section style={{ maxWidth: "1680px", margin: "0 auto", padding: "clamp(56px,7vw,108px) clamp(20px,4.5vw,70px)" }}>
