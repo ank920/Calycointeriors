@@ -2,13 +2,6 @@
 
 import { motion } from "motion/react";
 
-const TICKER_ITEMS = ["Modeled", "Measured", "Approved", "Built", "Delivered"];
-// Repeated several times per half so one half's content is always wider than
-// the hero card itself — otherwise, near the end of the marquee's 0%→-50%
-// loop, the bar runs out of items before the reset point and shows blank
-// background for the remaining width.
-const TICKER_HALF = Array.from({ length: 5 }, () => TICKER_ITEMS).flat();
-
 function CubeIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -113,23 +106,6 @@ export function DesignHero() {
         </div>
 
         <DesignHeroStat />
-
-        <div className="design-hero-ticker-wrap">
-          <div className="design-hero-ticker">
-            {TICKER_HALF.map((item, i) => (
-              <span className="design-hero-ticker-item" key={`${item}-${i}`}>
-                {item}
-                <span className="design-hero-ticker-dot" />
-              </span>
-            ))}
-            {TICKER_HALF.map((item, i) => (
-              <span className="design-hero-ticker-item" key={`${item}-dup-${i}`} aria-hidden="true">
-                {item}
-                <span className="design-hero-ticker-dot" />
-              </span>
-            ))}
-          </div>
-        </div>
       </section>
     </div>
   );
