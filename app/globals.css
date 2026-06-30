@@ -2030,90 +2030,6 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
   .est-fine-print-dark{display:none;}
 }
 
-/* ── AI Design page hero — same full-bleed card pattern as About/Design heroes ── */
-.ai-hero-wrap{width:100%;height:100svh;display:flex;align-items:center;justify-content:center;padding:clamp(10px,1.6vw,20px);background:var(--bg);}
-.ai-hero-section{
-  position:relative;width:100%;max-width:1536px;height:100%;overflow:hidden;
-  border-radius:clamp(24px,3vw,48px);display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.1);
-}
-.ai-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:65% center;z-index:0;}
-.ai-hero-scrim{
-  position:absolute;inset:0;z-index:0;
-  background:linear-gradient(175deg,rgba(20,18,15,.62) 0%,rgba(20,18,15,.15) 38%,rgba(20,18,15,.3) 62%,rgba(20,18,15,.82) 100%);
-}
-.ai-hero-content{z-index:1;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;}
-.ai-hero-text{width:100%;max-width:780px;display:flex;flex-direction:column;align-items:center;padding:clamp(90px,11vw,140px) 24px 0;text-align:center;}
-.ai-hero-badge{
-  display:flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;width:fit-content;margin:0 0 14px;
-  background:rgba(255,255,255,.16);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.3);
-  color:rgba(255,255,255,.92);font-size:13px;
-}
-.ai-hero-heading{
-  margin:0 0 8px;font-family:'Playfair Display',serif;font-weight:600;letter-spacing:-.02em;line-height:1.05;
-  font-size:clamp(34px,5.6vw,72px);color:#fff;
-  text-shadow:0 2px 16px rgba(0,0,0,.4),0 1px 3px rgba(0,0,0,.32);
-}
-.ai-hero-sub{
-  margin:0 0 26px;max-width:46ch;font-size:clamp(14px,1.2vw,17px);line-height:1.6;color:rgba(255,255,255,.82);
-  text-shadow:0 2px 16px rgba(0,0,0,.4),0 1px 3px rgba(0,0,0,.32);
-}
-.ai-hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:center;}
-
-.ai-hero-stat-card{
-  position:absolute;bottom:clamp(20px,3vw,40px);left:clamp(16px,2.6vw,40px);
-  display:flex;flex-direction:column;gap:12px;min-width:160px;width:fit-content;
-  padding:clamp(16px,2vw,22px);border-radius:clamp(20px,2.6vw,32px);
-  background:rgba(255,255,255,.3);backdrop-filter:blur(20px);
-}
-.ai-hero-stat-num{margin:0;font-family:'Playfair Display',serif;font-weight:600;letter-spacing:-.01em;font-size:clamp(26px,2.8vw,32px);color:rgba(31,31,31,.9);}
-.ai-hero-stat-label{margin:2px 0 0;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(31,31,31,.55);}
-.ai-hero-stat-btn{
-  display:flex;align-items:center;align-self:flex-start;gap:8px;padding:6px 20px 6px 6px;border-radius:100px;
-  background:var(--white);font-size:13px;color:rgba(31,31,31,.9);text-decoration:none;
-  transition:background .35s var(--ease),transform .35s var(--ease);
-}
-.ai-hero-stat-btn:hover{background:rgba(255,255,255,.9);}
-.ai-hero-stat-btn-icon{display:flex;align-items:center;justify-content:center;padding:6px;border-radius:50%;background:rgba(31,31,31,.08);}
-.ai-hero-icon-sm{width:14px;height:14px;}
-.ai-hero-icon-lg{width:20px;height:20px;}
-
-.ai-hero-corner{
-  position:absolute;bottom:0;right:0;display:flex;align-items:center;gap:clamp(12px,1.6vw,22px);
-  padding:14px 24px 14px 36px;border-radius:clamp(20px,2.6vw,40px) 0 0 0;background:var(--bg);
-}
-.ai-hero-corner-mask{position:absolute;width:clamp(20px,2.6vw,40px);height:clamp(20px,2.6vw,40px);pointer-events:none;}
-.ai-hero-corner-mask-top{top:calc(clamp(20px,2.6vw,40px) * -1);right:0;}
-.ai-hero-corner-mask-left{bottom:0;left:calc(clamp(20px,2.6vw,40px) * -1);}
-.ai-hero-corner-icon{
-  flex-shrink:0;display:flex;align-items:center;justify-content:center;width:clamp(40px,4vw,56px);height:clamp(40px,4vw,56px);
-  border-radius:50%;background:rgba(31,31,31,.05);border:1px solid rgba(31,31,31,.1);color:rgba(31,31,31,.8);
-}
-.ai-hero-corner-title{margin:0;font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(15px,1.5vw,19px);color:rgba(31,31,31,.92);}
-.ai-hero-corner-link{
-  display:flex;align-items:center;gap:4px;margin-top:4px;font-size:13px;color:rgba(31,31,31,.6);text-decoration:none;
-  transition:color .35s var(--ease);
-}
-.ai-hero-corner-link:hover{color:rgba(31,31,31,.85);}
-
-@media (max-width:700px){
-  .ai-hero-wrap{height:auto;padding:10px;}
-  /* Badge/heading/CTA + stat card are shorter than the min-height floor, and
-     with no justify-content this flex column sat at the top, dumping all the
-     leftover room as bare background below the stat card. Centering it
-     splits that space evenly above and below instead. */
-  .ai-hero-section{height:auto;min-height:100svh;padding-bottom:90px;justify-content:center;}
-  .ai-hero-text{padding:56px 20px 28px;}
-  .ai-hero-heading{font-size:clamp(30px,8vw,40px);}
-  /* Stat card moves into normal flow under the CTAs instead of floating
-     absolute — on a narrow screen with a 3-line heading it could otherwise
-     overlap either the text above or the corner widget pinned below. */
-  .ai-hero-stat-card{position:static;width:100%;max-width:320px;margin-top:24px;}
-  .ai-hero-corner{padding:12px 18px 12px 28px;}
-}
-@media (max-width:420px){
-  .ai-hero-heading{font-size:clamp(26px,8vw,34px);}
-  .ai-hero-corner-title{font-size:13px;}
-}
 @media (max-width:600px){
   /* At one column, the inline borderRight (used to divide columns) sits on
      the box's own outer edge and stops showing — swap to a bottom divider
@@ -2158,6 +2074,7 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
   display:flex;flex-direction:column;justify-content:space-between;background:#fff;border-left:1px solid rgba(22,20,15,.08);
   padding:clamp(20px,2.6vw,32px) clamp(18px,2.2vw,28px);
 }
+.ai-room-picker-panel-handle{display:none;}
 .ai-room-picker-panel-top{display:flex;flex-direction:column;}
 .ai-room-picker-panel-head{margin-bottom:clamp(14px,1.8vw,20px);}
 .ai-room-picker-panel-title{margin:0;font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(22px,2.4vw,28px);color:var(--primary);}
@@ -2192,8 +2109,8 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
 /* ── Step 2 — furniture customizer (tabs + card grid in the right panel) ── */
 .ai-fc{display:flex;flex-direction:column;height:100%;min-height:0;}
 .ai-fc-back{
-  display:flex;align-items:center;gap:8px;align-self:flex-start;flex-shrink:0;margin-bottom:clamp(16px,2vw,22px);
-  padding:0;border:none;background:none;cursor:pointer;color:#8C8576;font-size:13px;font-family:inherit;
+  display:flex;align-items:center;gap:8px;align-self:flex-start;flex-shrink:0;margin:-8px 0 clamp(16px,2vw,22px) -8px;
+  padding:8px;border:none;background:none;cursor:pointer;color:#8C8576;font-size:13px;font-family:inherit;
   transition:color .3s var(--ease);
 }
 .ai-fc-back:hover{color:var(--primary);}
@@ -2210,7 +2127,7 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
 .ai-fc-tab.active{background:#fff;color:var(--primary);box-shadow:0 1px 3px rgba(20,18,15,.12);}
 
 .ai-fc-grid{
-  flex:1;min-height:0;overflow-y:auto;display:grid;grid-template-columns:repeat(3,1fr);
+  flex:1;min-height:0;max-height:320px;overflow-y:auto;display:grid;grid-template-columns:repeat(3,1fr);
   gap:8px;padding-right:4px;align-content:start;
 }
 .ai-fc-card{
@@ -2227,10 +2144,58 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
 
 .ai-fc-empty{grid-column:1/-1;margin:24px 0;text-align:center;font-size:13px;color:#8C8576;}
 
+.ai-fc-book{flex-shrink:0;margin-top:clamp(18px,2.5vw,28px);padding-top:clamp(16px,2vw,22px);border-top:1px solid rgba(22,20,15,.1);text-align:center;}
+.ai-fc-book-hint{margin:0 0 14px;font-size:12px;color:#8C8576;letter-spacing:.01em;}
+.ai-fc-book-btn{display:inline-flex;align-items:center;gap:8px;font-size:13px !important;padding:13px 22px !important;}
+
+/* Mobile inline preview — shown only inside panel on small screens */
+.ai-fc-mobile-preview{display:none;}
+
 @media (max-width:880px){
-  .ai-room-picker{height:auto;flex-direction:column;}
-  .ai-room-picker-stage{height:46vh;}
-  .ai-room-picker-stage-heading{font-size:clamp(26px,7vw,40px);}
-  .ai-room-picker-panel{width:100%;}
+  /* Sticky preview pattern: the stage pins to the top of the viewport while
+     the panel below scrolls past underneath it — like a mobile product
+     configurator. This needs the section itself to stop clipping (overflow
+     hidden on an ancestor disconnects sticky from the real page scroll) and
+     needs the stage painted above the panel, reversing their desktop
+     z-index order where the panel sits above the stage's edge. */
+  .ai-room-picker{height:auto;flex-direction:column;overflow:visible;}
+  .ai-room-picker-stage{
+    height:auto;position:sticky;top:0;z-index:5;
+    box-shadow:0 4px 12px rgba(20,18,15,.1);
+    padding:clamp(14px,2vw,20px) clamp(18px,2.6vw,32px);
+  }
+  .ai-room-picker-stage-heading{font-size:clamp(24px,6vw,36px);}
+  .ai-room-picker-panel{
+    position:relative;z-index:1;width:100%;margin-top:-18px;padding-top:38px;
+    border-radius:22px 22px 0 0;box-shadow:0 -10px 24px rgba(20,18,15,.06);
+  }
+  .ai-room-picker-panel-handle{
+    display:block;position:absolute;top:14px;left:50%;transform:translateX(-50%);
+    width:36px;height:4px;border-radius:100px;background:rgba(22,20,15,.16);
+  }
   .ai-fc-grid{max-height:60vh;}
+  /* Hide the sticky stage frame on mobile — inline preview inside panel takes over */
+  .ai-room-picker-stage-frame{display:none;}
+  .ai-fc-mobile-preview{
+    display:block;flex-shrink:0;margin:0 0 16px;
+    border-radius:14px;overflow:hidden;aspect-ratio:16/9;background:#f4f2ec;
+  }
+  .ai-fc-mobile-preview-img{width:100%;height:100%;object-fit:cover;display:block;}
+}
+@media (max-width:560px){
+  .ai-room-picker-stage{height:auto;padding:12px 16px;}
+  .ai-room-picker-stage-heading{margin-bottom:0;font-size:18px;}
+  .ai-room-picker-panel{padding:30px 14px 20px;}
+  .ai-room-row-thumb{width:50px;height:50px;}
+  .ai-room-row-label{font-size:14px;}
+  .ai-fc-tabs{gap:2px;margin-bottom:12px;}
+  .ai-fc-tab{padding:9px 10px;font-size:11px;}
+  /* 3 columns so cards are compact enough to see several at once */
+  .ai-fc-grid{grid-template-columns:repeat(3,1fr);gap:6px;max-height:none;}
+  .ai-fc-card-imgwrap{aspect-ratio:1/0.75;}
+  .ai-fc-card-label{font-size:10px;margin:5px 6px 7px;}
+  /* Smaller inline preview on very small screens */
+  .ai-fc-mobile-preview{aspect-ratio:4/3;margin-bottom:12px;}
+  .ai-fc-book{margin-top:14px;padding-top:14px;}
+  .ai-fc-book-hint{font-size:11px;margin-bottom:10px;}
 }

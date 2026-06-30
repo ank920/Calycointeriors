@@ -41,7 +41,9 @@
       "Bash(curl -s -X POST http://localhost:3001/api/contact -H \"Content-Type: application/json\" -d '{\"type\":\"consultation\",\"phone\":\"9999999999\",\"email\":\"a@b.com\",\"city\":\"Delhi\"}')",
       "Bash(rm -f app/api/contact/route.ts lib/mailer.ts .env.example)",
       "Bash(rmdir app/api/contact)",
-      "Bash(curl -s -X POST https://api.web3forms.com/submit -H \"Content-Type: application/json\" -H \"Accept: application/json\" -d '{\"access_key\":\"52da37be-e058-4a07-92c1-a07f95c25f6b\",\"to\":\"calycopaints@gmail.com\",\"subject\":\"Test - Calyco Interiors wiring check\",\"from_name\":\"Calyco Interiors - Test\",\"message\":\"This is a test message confirming the Calyco Interiors site forms are wired to Web3Forms correctly.\"}')"
+      "Bash(curl -s -X POST https://api.web3forms.com/submit -H \"Content-Type: application/json\" -H \"Accept: application/json\" -d '{\"access_key\":\"52da37be-e058-4a07-92c1-a07f95c25f6b\",\"to\":\"calycopaints@gmail.com\",\"subject\":\"Test - Calyco Interiors wiring check\",\"from_name\":\"Calyco Interiors - Test\",\"message\":\"This is a test message confirming the Calyco Interiors site forms are wired to Web3Forms correctly.\"}')",
+      "Bash(node -e \"try{require.resolve\\('playwright'\\);console.log\\('playwright found'\\)}catch\\(e\\){console.log\\('no playwright'\\)}\")",
+      "Bash(node -e \"try{require.resolve\\('puppeteer'\\);console.log\\('puppeteer found'\\)}catch\\(e\\){console.log\\('no puppeteer'\\)}\")"
     ],
     "additionalDirectories": [
       "c:\\c\\Users\\av074\\Downloads\\calyco interior"

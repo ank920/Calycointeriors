@@ -58,12 +58,12 @@ const ROOMS: Room[] = [
   }
 ];
 
-const WARDROBE_ITEMS: FurnitureItem[] = Array.from({ length: 7 }, (_, i) => {
-  const n = i + 1;
+const WARDROBE_ITEMS: FurnitureItem[] = Array.from({ length: 6 }, (_, i) => {
+  const n = i + 2;
   return {
     id: `w${n}`,
-    label: n === 1 ? "Modern Wardrobe" : `Style ${n} Wardrobe`,
-    sub: n === 1 ? "New imported wardrobe asset" : "AI Generated Wardrobe Asset",
+    label: `Style ${n} Wardrobe`,
+    sub: "AI Generated Wardrobe Asset",
     stageImg: `/view/bedroom/wardrobe/w${n}.1.png`,
     cardImg: `/view/bedroom/wardrobe/w${n}.2.png`
   };
@@ -80,21 +80,70 @@ const BED_ITEMS: FurnitureItem[] = Array.from({ length: 4 }, (_, i) => {
   };
 });
 
+const BEDROOM_CHAIR_ITEMS: FurnitureItem[] = Array.from({ length: 5 }, (_, i) => {
+  const n = i + 1;
+  return {
+    id: `c${n}`,
+    label: n === 1 ? "Modern Chair" : `Style ${n} Chair`,
+    sub: n === 1 ? "New imported chair asset" : "AI Generated Chair Asset",
+    stageImg: `/view/bedroom/chair/c${n}1.png`,
+    cardImg: `/view/bedroom/chair/c${n}2.png`
+  };
+});
+
+const SOFA_ITEMS: FurnitureItem[] = Array.from({ length: 5 }, (_, i) => {
+  const n = i + 1;
+  return {
+    id: `s${n}`,
+    label: n === 1 ? "Modern Sofa" : `Style ${n} Sofa`,
+    sub: n === 1 ? "New imported sofa asset" : "AI Generated Sofa Asset",
+    stageImg: `/view/living%20room/sofa/s${n}.1.png`,
+    cardImg: `/view/living%20room/sofa/s${n}.2.png`
+  };
+});
+
+const COFFEE_TABLE_ITEMS: FurnitureItem[] = Array.from({ length: 5 }, (_, i) => {
+  const n = i + 1;
+  return {
+    id: `ce${n}`,
+    label: n === 1 ? "Modern Coffee Table" : `Style ${n} Coffee Table`,
+    sub: n === 1 ? "New imported coffee table asset" : "AI Generated Coffee Table Asset",
+    stageImg: `/view/living%20room/coffe/ce${n}1.png`,
+    cardImg: `/view/living%20room/coffe/ce${n}2.png`
+  };
+});
+
+const KITCHEN_TYPE_ITEMS: FurnitureItem[] = Array.from({ length: 5 }, (_, i) => {
+  const n = i + 1;
+  return {
+    id: `kt${n}`,
+    label: n === 1 ? "Modern Kitchen" : `Style ${n} Kitchen`,
+    sub: "AI Generated Kitchen",
+    stageImg: `/view/kitchen/kitchen%20type/d${n}1.png`,
+    cardImg: `/view/kitchen/kitchen%20type/d${n}2.png`
+  };
+});
+
+const DINING_TABLE_ITEMS: FurnitureItem[] = [
+  { id: "dt_l", label: "L-Shape",   sub: "Dining layout", stageImg: "/view/kitchen/dinning%20table/l%20shape.png",   cardImg: "/view/kitchen/dinning%20table/l%20shape.png" },
+  { id: "dt_p", label: "Parallel",  sub: "Dining layout", stageImg: "/view/kitchen/dinning%20table/parallel.png",    cardImg: "/view/kitchen/dinning%20table/parallel.png" },
+  { id: "dt_s", label: "Straight",  sub: "Dining layout", stageImg: "/view/kitchen/dinning%20table/shape.png",       cardImg: "/view/kitchen/dinning%20table/shape.png" },
+  { id: "dt_u", label: "U-Shape",   sub: "Dining layout", stageImg: "/view/kitchen/dinning%20table/u%20shape.png",   cardImg: "/view/kitchen/dinning%20table/u%20shape.png" },
+];
+
 const ROOM_GROUPS: Record<RoomId, FurnitureGroup[]> = {
   bedroom: [
     { id: "bed", label: "Bed", items: BED_ITEMS },
-    { id: "sidetable", label: "Side Table", items: [] },
+    { id: "chair", label: "Chair", items: BEDROOM_CHAIR_ITEMS },
     { id: "wardrobe", label: "Wardrobe", items: WARDROBE_ITEMS }
   ],
   living: [
-    { id: "sofa", label: "Sofa", items: [] },
-    { id: "wall", label: "Wall", items: [] },
-    { id: "coffeetable", label: "Coffee Table", items: [] },
-    { id: "chair", label: "Chair", items: [] }
+    { id: "sofa", label: "Sofa", items: SOFA_ITEMS },
+    { id: "coffeetable", label: "Coffee Table", items: COFFEE_TABLE_ITEMS }
   ],
   kitchen: [
-    { id: "kitchentype", label: "Kitchen Type", items: [] },
-    { id: "diningtable", label: "Dining Table", items: [] }
+    { id: "kitchentype", label: "Kitchen Type", items: KITCHEN_TYPE_ITEMS },
+    { id: "diningtable", label: "Dining Table", items: DINING_TABLE_ITEMS }
   ]
 };
 
@@ -205,6 +254,7 @@ export function AIDesignRoomPicker() {
       </div>
 
       <div className="ai-room-picker-panel">
+        <span className="ai-room-picker-panel-handle" aria-hidden="true" />
         {step === "select" ? (
           <>
             <div className="ai-room-picker-panel-top">
@@ -230,6 +280,12 @@ export function AIDesignRoomPicker() {
               <ArrowLeftIcon className="ai-room-icon-sm" /> All Spaces
             </button>
 
+            {activeItem && (
+              <div className="ai-fc-mobile-preview">
+                <img src={activeItem.stageImg} alt={activeItem.label} className="ai-fc-mobile-preview-img" />
+              </div>
+            )}
+
             <div className="ai-fc-tabs">
               {groups.map((g) => (
                 <button
@@ -251,6 +307,13 @@ export function AIDesignRoomPicker() {
               ) : (
                 <p className="ai-fc-empty">More {activeGroup.label.toLowerCase()} designs are on the way.</p>
               )}
+            </div>
+
+            <div className="ai-fc-book">
+              <p className="ai-fc-book-hint">Like what you see? Our studio will bring it to life.</p>
+              <a href="#contact" className="btn-solid ai-fc-book-btn">
+                Book a Free Consultation <ArrowRightIcon className="ai-room-icon-sm" />
+              </a>
             </div>
           </div>
         )}

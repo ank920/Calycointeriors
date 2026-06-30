@@ -3,7 +3,6 @@ import { CustomCursor, SiteInteractions } from "@/components/site-interactions";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ScrollEngine } from "@/components/scroll-engine";
-import { AIDesignHero } from "@/components/ai-design-hero";
 import { AIDesignTagline } from "@/components/ai-design-tagline";
 import { AIDesignRoomPicker } from "@/components/ai-design-room-picker";
 
@@ -37,9 +36,6 @@ export default function AIDesignPage() {
       <SiteInteractions />
       <ScrollEngine />
       <SiteHeader />
-
-      {/* ═══ HERO ═══ */}
-      <AIDesignHero />
 
       {/* ═══ ANIMATED TAGLINE ═══ */}
       <AIDesignTagline />
@@ -100,7 +96,7 @@ export default function AIDesignPage() {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section style={{ background: "#ECEADE", padding: "clamp(56px,7vw,96px) clamp(20px,4.5vw,70px)" }}>
+      <section id="contact" style={{ background: "#ECEADE", padding: "clamp(56px,7vw,96px) clamp(20px,4.5vw,70px)" }}>
         <div
           style={{
             maxWidth: "1520px",
