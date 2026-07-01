@@ -2057,10 +2057,35 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
   position:relative;flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg);
   padding:clamp(18px,2.6vw,32px);
 }
+.ai-room-picker-stage-top{
+  flex-shrink:0;display:flex;align-items:flex-end;flex-wrap:wrap;
+  gap:clamp(10px,1.4vw,18px);margin-bottom:clamp(12px,1.8vw,20px);
+}
+.ai-room-picker-stage-heading-wrap{display:flex;flex-direction:column;gap:5px;}
+.ai-room-picker-stage-eyebrow{
+  font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--brass);margin:0;line-height:1;
+}
 .ai-room-picker-stage-heading{
-  flex-shrink:0;margin:0 0 clamp(12px,1.8vw,20px);
-  font-family:'Inter Tight',sans-serif;font-weight:800;letter-spacing:-.02em;line-height:0.96;
-  font-size:clamp(28px,4.4vw,52px);color:var(--primary);
+  margin:0;
+  font-family:'Inter Tight',sans-serif;font-weight:700;letter-spacing:-.025em;line-height:0.95;
+  font-size:clamp(22px,2.8vw,36px);color:var(--primary);
+}
+.ai-room-pill-group{display:flex;align-items:center;gap:5px;flex-wrap:wrap;padding-bottom:3px;}
+.ai-room-pill{
+  padding:8px 18px;border-radius:100px;cursor:pointer;font-family:inherit;
+  font-size:12.5px;font-weight:600;letter-spacing:.02em;
+  border:1.5px solid rgba(22,20,15,.15);background:transparent;color:#7A7166;
+  transition:border-color .22s,color .22s,background .22s,box-shadow .22s,letter-spacing .22s;
+  white-space:nowrap;
+}
+.ai-room-pill:hover{border-color:rgba(22,20,15,.32);color:var(--primary);background:rgba(22,20,15,.04);}
+.ai-room-pill.active{
+  border-color:var(--brass);
+  background:linear-gradient(135deg,#B08D57 0%,#C9A96E 100%);
+  color:#fff;
+  box-shadow:0 2px 12px rgba(176,141,87,.35);
+  letter-spacing:.03em;
 }
 .ai-room-picker-stage-frame{
   position:relative;flex:1;min-height:0;border-radius:clamp(10px,1.4vw,18px);overflow:hidden;
@@ -2223,7 +2248,9 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
     box-shadow:0 4px 12px rgba(20,18,15,.1);
     padding:clamp(14px,2vw,20px) clamp(18px,2.6vw,32px);
   }
-  .ai-room-picker-stage-heading{font-size:clamp(24px,6vw,36px);}
+  .ai-room-picker-stage-heading{font-size:clamp(18px,5vw,26px);}
+  .ai-room-picker-stage-eyebrow{font-size:10px;}
+  .ai-room-pill{font-size:12px;padding:6px 14px;}
   .ai-room-picker-panel{
     position:relative;z-index:1;width:100%;margin-top:-18px;padding-top:38px;
     border-radius:22px 22px 0 0;box-shadow:0 -10px 24px rgba(20,18,15,.06);
