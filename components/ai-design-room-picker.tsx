@@ -63,7 +63,7 @@ const WARDROBE_ITEMS: FurnitureItem[] = Array.from({ length: 6 }, (_, i) => {
   const n = i + 2;
   return {
     id: `w${n}`,
-    label: `Style ${n} Wardrobe`,
+    label: `Style ${n}`,
     sub: "AI Generated Wardrobe Asset",
     stageImg: `/view/bedroom/wardrobe/w${n}.1.png`,
     cardImg: `/view/bedroom/wardrobe/w${n}.2.png`
@@ -74,7 +74,7 @@ const BED_ITEMS: FurnitureItem[] = Array.from({ length: 4 }, (_, i) => {
   const n = i + 1;
   return {
     id: `b${n}`,
-    label: n === 1 ? "Modern Bed" : `Style ${n} Bed`,
+    label: n === 1 ? "Modern" : `Style ${n}`,
     sub: n === 1 ? "New imported bed asset" : "AI Generated Bed Asset",
     stageImg: `/view/bedroom/bed/b${n}.1.png`,
     cardImg: `/view/bedroom/bed/b${n}.2.png`
@@ -85,7 +85,7 @@ const BEDROOM_CHAIR_ITEMS: FurnitureItem[] = Array.from({ length: 5 }, (_, i) =>
   const n = i + 1;
   return {
     id: `c${n}`,
-    label: n === 1 ? "Modern Chair" : `Style ${n} Chair`,
+    label: n === 1 ? "Modern" : `Style ${n}`,
     sub: n === 1 ? "New imported chair asset" : "AI Generated Chair Asset",
     stageImg: `/view/bedroom/chair/c${n}1.png`,
     cardImg: `/view/bedroom/chair/c${n}2.png`
@@ -96,7 +96,7 @@ const SOFA_ITEMS: FurnitureItem[] = Array.from({ length: 5 }, (_, i) => {
   const n = i + 1;
   return {
     id: `s${n}`,
-    label: n === 1 ? "Modern Sofa" : `Style ${n} Sofa`,
+    label: n === 1 ? "Modern" : `Style ${n}`,
     sub: n === 1 ? "New imported sofa asset" : "AI Generated Sofa Asset",
     stageImg: `/view/living%20room/sofa/s${n}.1.png`,
     cardImg: `/view/living%20room/sofa/s${n}.2.png`
@@ -107,7 +107,7 @@ const COFFEE_TABLE_ITEMS: FurnitureItem[] = Array.from({ length: 5 }, (_, i) => 
   const n = i + 1;
   return {
     id: `ce${n}`,
-    label: n === 1 ? "Modern Coffee Table" : `Style ${n} Coffee Table`,
+    label: n === 1 ? "Modern" : `Style ${n}`,
     sub: n === 1 ? "New imported coffee table asset" : "AI Generated Coffee Table Asset",
     stageImg: `/view/living%20room/coffe/ce${n}1.png`,
     cardImg: `/view/living%20room/coffe/ce${n}2.png`
@@ -125,7 +125,7 @@ const DINING_TABLE_ITEMS: FurnitureItem[] = Array.from({ length: 5 }, (_, i) => 
   const n = i + 1;
   return {
     id: `dt${n}`,
-    label: n === 1 ? "Modern Dining Table" : `Style ${n} Dining Table`,
+    label: n === 1 ? "Modern" : `Style ${n}`,
     sub: "AI Generated Dining Table",
     stageImg: `/view/kitchen/kitchen%20type/d${n}1.png`,
     cardImg: `/view/kitchen/kitchen%20type/d${n}2.png`

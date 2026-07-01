@@ -2139,7 +2139,7 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
 .ai-fc-card.active{border-color:var(--brass);box-shadow:0 0 0 3px rgba(176,141,87,.18);}
 .ai-fc-card-imgwrap{aspect-ratio:1/0.78;background:#F4F2EC;display:flex;align-items:center;justify-content:center;}
 .ai-fc-card-img{width:100%;height:100%;object-fit:contain;padding:6px;}
-.ai-fc-card-label{margin:7px 8px 9px;font-size:11px;font-weight:600;line-height:1.25;color:var(--primary);}
+.ai-fc-card-label{margin:7px 8px 9px;font-size:11px;font-weight:600;line-height:1.25;color:var(--primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .ai-fc-card.active .ai-fc-card-label{color:var(--brass);}
 
 .ai-fc-empty{grid-column:1/-1;margin:24px 0;text-align:center;font-size:13px;color:#8C8576;}
