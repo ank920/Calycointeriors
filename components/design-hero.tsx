@@ -58,6 +58,8 @@ export function DesignHero() {
           src="/assets/home%20page/Wardrobe.webp"
           alt="A wardrobe interior designed and built by Calyco"
           className="design-hero-bg"
+          fetchPriority="high"
+          loading="eager"
         />
         <div className="design-hero-scrim" />
         <DesignHeroRing />

@@ -80,6 +80,8 @@ const PROCESS_STEPS = [
 export default function DesignPage() {
   return (
     <>
+      <link rel="preload" as="image" href="/assets/home%20page/Wardrobe.webp" />
+
       <CustomCursor />
       <SiteInteractions />
       <ScrollEngine />
@@ -174,13 +176,13 @@ export default function DesignPage() {
 
           <div className="design-showcase-grid">
             <div className="design-showcase-cell design-showcase-cell-main" data-reveal="up">
-              <img src={SHOWCASE_IMAGES.main} alt="A Calyco-designed kitchen, built to its modeled specification" />
+              <img src={SHOWCASE_IMAGES.main} alt="A Calyco-designed kitchen, built to its modeled specification" loading="lazy" />
             </div>
             <div className="design-showcase-cell design-showcase-cell-top" data-reveal="up" data-delay="80">
-              <img src={SHOWCASE_IMAGES.top} alt="A Calyco-designed living room, built to its modeled specification" />
+              <img src={SHOWCASE_IMAGES.top} alt="A Calyco-designed living room, built to its modeled specification" loading="lazy" />
             </div>
             <div className="design-showcase-cell design-showcase-cell-bottom" data-reveal="up" data-delay="160">
-              <img src={SHOWCASE_IMAGES.bottom} alt="A Calyco-designed bedroom, built to its modeled specification" />
+              <img src={SHOWCASE_IMAGES.bottom} alt="A Calyco-designed bedroom, built to its modeled specification" loading="lazy" />
             </div>
           </div>
         </div>

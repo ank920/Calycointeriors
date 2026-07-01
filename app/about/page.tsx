@@ -14,6 +14,8 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <link rel="preload" as="image" href="/assets/home%20page/Living%20Room.webp" />
+
       <CustomCursor />
       <SiteInteractions />
       <ScrollEngine />

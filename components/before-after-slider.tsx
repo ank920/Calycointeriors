@@ -21,12 +21,13 @@ function BeforeAfterCard({ set }: { set: BASet }) {
           clipped to its left pos% — so the divider's left side (matching the
           "Before" tag's left position) always shows the before image, and the
           right side (matching "After") shows after. */}
-      <img className="ba-after" src={set.after} alt={`${set.room} after the Calyco renovation`} />
+      <img className="ba-after" src={set.after} alt={`${set.room} after the Calyco renovation`} loading="lazy" />
       <img
         className="ba-before"
         src={set.before}
         alt={`${set.room} before the Calyco renovation`}
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
+        loading="lazy"
       />
       <span className="ba-tag ba-tag-before">Before</span>
       <span className="ba-tag ba-tag-after">After</span>

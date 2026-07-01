@@ -201,6 +201,9 @@ const REAL_LIFE_PARA_LINES = [
 export default function Home() {
   return (
     <>
+      {/* Preload the LCP hero image before any JS runs */}
+      <link rel="preload" as="image" href="/assets/home%20page/extra.webp" />
+
       <CustomCursor />
       <SiteInteractions />
       <ScrollEngine />
@@ -211,7 +214,7 @@ export default function Home() {
       {/* ═══ SECTION 1 — HERO ═══ */}
       <section id="hero">
         <div id="hero-bg">
-          <img src="/assets/home%20page/extra.webp" alt="A sunlit living room with city skyline views" />
+          <img src="/assets/home%20page/extra.webp" alt="A sunlit living room with city skyline views" fetchPriority="high" loading="eager" />
         </div>
         <div className="hero-overlay" />
         <div className="hero-content">
@@ -310,7 +313,7 @@ export default function Home() {
             <div className="project-banner-img">
               <picture>
                 <source media="(max-width:900px)" srcSet="/before%20and%20after/s1,2.png" />
-                <img src="/assets/home%20page/Living%20Room.webp" alt="A thoughtfully designed living room with warm evening lighting" />
+                <img src="/assets/home%20page/Living%20Room.webp" alt="A thoughtfully designed living room with warm evening lighting" loading="eager" />
               </picture>
             </div>
             <div className="project-banner-overlay" />
@@ -318,14 +321,14 @@ export default function Home() {
               <h2 style={{ margin: 0, fontWeight: 700, lineHeight: 1, letterSpacing: "-.03em", fontSize: "clamp(32px,5.5vw,80px)" }}>
                 Thoughtfully Designed.
               </h2>
-              <a href="#contact" className="btn-solid">View Project</a>
+              <a href="#work" className="btn-solid">View Project</a>
             </div>
           </div>
           <div className="project-scene-layer">
             <div className="project-banner-img">
               <picture>
                 <source media="(max-width:900px)" srcSet="/assets/images/Cozy%20pastel%20kids'%20room%20with%20modern%20touches.png" />
-                <img src="/assets/home%20page/Kitchen.webp" alt="An expertly executed kitchen with natural daylight" />
+                <img src="/assets/home%20page/Kitchen.webp" alt="An expertly executed kitchen with natural daylight" loading="lazy" />
               </picture>
             </div>
             <div className="project-banner-overlay" />
@@ -339,7 +342,7 @@ export default function Home() {
             <div className="project-banner-img">
               <picture>
                 <source media="(max-width:900px)" srcSet="/before%20and%20after/s4,2.png" />
-                <img src="/assets/home%20page/Bedroom.webp" alt="A bedroom delivered with transparent craftsmanship and warm morning light" />
+                <img src="/assets/home%20page/Bedroom.webp" alt="A bedroom delivered with transparent craftsmanship and warm morning light" loading="lazy" />
               </picture>
             </div>
             <div className="project-banner-overlay" />

@@ -109,6 +109,8 @@ export function AboutHero() {
           src="/assets/home%20page/Living%20Room.webp"
           alt="A Calyco-designed living room"
           className="about-hero-bg"
+          fetchPriority="high"
+          loading="eager"
         />
         <div className="about-hero-scrim" />
         <div className="about-hero-content">

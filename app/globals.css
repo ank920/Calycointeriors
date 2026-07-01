@@ -2144,9 +2144,68 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
 
 .ai-fc-empty{grid-column:1/-1;margin:24px 0;text-align:center;font-size:13px;color:#8C8576;}
 
-.ai-fc-book{flex-shrink:0;margin-top:clamp(18px,2.5vw,28px);padding-top:clamp(16px,2vw,22px);border-top:1px solid rgba(22,20,15,.1);text-align:center;}
-.ai-fc-book-hint{margin:0 0 14px;font-size:12px;color:#8C8576;letter-spacing:.01em;}
-.ai-fc-book-btn{display:inline-flex;align-items:center;gap:8px;font-size:13px !important;padding:13px 22px !important;}
+.ai-fc-book{flex-shrink:0;margin-top:clamp(16px,2vw,22px);}
+
+/* ── Premium light consultation card ── */
+.ai-fc-mini-card{
+  background:#FDFAF5;
+  border-radius:14px;
+  padding:22px 20px 20px;
+  border:1px solid rgba(184,149,106,.22);
+  border-top:2.5px solid var(--brass);
+  box-shadow:0 4px 24px rgba(22,20,15,.07);
+}
+.ai-fc-mini-eyebrow{
+  margin:0 0 5px;
+  font-size:9.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--brass);
+}
+.ai-fc-mini-heading{
+  margin:0 0 20px;
+  font-size:15px;font-weight:700;line-height:1.35;letter-spacing:-.02em;
+  color:var(--primary);
+}
+
+.ai-fc-mini-form{display:flex;flex-direction:column;gap:14px;}
+.ai-fc-mini-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.ai-fc-mini-field{display:flex;flex-direction:column;gap:5px;}
+.ai-fc-mini-label{
+  font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:#9C9082;
+}
+.ai-fc-mini-req{color:var(--brass);}
+.ai-fc-mini-input{
+  width:100%;padding:9px 0;
+  background:transparent;
+  border:none;border-bottom:1.5px solid rgba(22,20,15,.12);
+  font-size:13px;font-family:inherit;color:var(--primary);
+  outline:none;transition:border-color .2s;
+  box-sizing:border-box;
+}
+.ai-fc-mini-input::placeholder{color:#C0B8AE;}
+.ai-fc-mini-input:focus{border-bottom-color:var(--brass);}
+
+.ai-fc-mini-btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;margin-top:6px;padding:14px 16px;
+  background:linear-gradient(135deg,#B8956A 0%,#C9A96E 60%,#B8956A 100%);
+  color:#fff;border:none;border-radius:9px;cursor:pointer;
+  font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  font-family:inherit;
+  transition:opacity .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 4px 16px rgba(184,149,106,.28);
+}
+.ai-fc-mini-btn:hover:not(:disabled){opacity:.9;transform:translateY(-1px);box-shadow:0 6px 20px rgba(184,149,106,.4);}
+.ai-fc-mini-btn:active:not(:disabled){transform:translateY(0);box-shadow:0 2px 10px rgba(184,149,106,.25);}
+.ai-fc-mini-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none;}
+
+.ai-fc-mini-success{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  padding:20px 16px;text-align:center;
+  color:#5A7A4A;font-size:13px;line-height:1.55;
+}
+.ai-fc-mini-success svg{stroke:#5A7A4A;flex-shrink:0;}
+.ai-fc-mini-error{font-size:11px;color:#c0392b;text-align:center;margin-top:2px;}
 
 /* Mobile inline preview — shown only inside panel on small screens */
 .ai-fc-mobile-preview{display:none;}
@@ -2196,6 +2255,9 @@ html.sb-dragging #custom-scrollbar-thumb{box-shadow:0 0 12px -2px rgba(176,141,8
   .ai-fc-card-label{font-size:10px;margin:5px 6px 7px;}
   /* Smaller inline preview on very small screens */
   .ai-fc-mobile-preview{aspect-ratio:4/3;margin-bottom:12px;}
-  .ai-fc-book{margin-top:14px;padding-top:14px;}
-  .ai-fc-book-hint{font-size:11px;margin-bottom:10px;}
+  .ai-fc-book{margin-top:14px;}
+  .ai-fc-mini-card{padding:18px 16px 16px;border-radius:12px;}
+  .ai-fc-mini-row{grid-template-columns:1fr;}
+  .ai-fc-mini-heading{font-size:14px;margin-bottom:16px;}
+  .ai-fc-mini-btn{padding:13px 14px;}
 }

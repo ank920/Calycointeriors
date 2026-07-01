@@ -95,15 +95,21 @@ export function SiteFooter() {
               <input
                 type="email"
                 name="email"
-                placeholder={newsletterStatus === "sent" ? "Subscribed ✓" : "Your email address"}
+                placeholder="Your email address"
                 required
                 aria-label="Email address"
-                disabled={newsletterStatus === "sending"}
+                disabled={newsletterStatus === "sending" || newsletterStatus === "sent"}
               />
-              <button type="submit" aria-label="Subscribe" disabled={newsletterStatus === "sending"}>
+              <button type="submit" aria-label="Subscribe" disabled={newsletterStatus === "sending" || newsletterStatus === "sent"}>
                 <SendIcon />
               </button>
             </form>
+            {newsletterStatus === "sent" && (
+              <p style={{ fontSize: "12px", color: "rgba(255,255,255,.55)", marginTop: "8px" }}>Subscribed — thank you!</p>
+            )}
+            {newsletterStatus === "error" && (
+              <p style={{ fontSize: "12px", color: "#e07070", marginTop: "8px" }}>Something went wrong. Please try again.</p>
+            )}
           </div>
           <div className="footer-col" data-reveal="up" data-delay="80">
             <p className="footer-heading">Explore</p>

@@ -43,7 +43,7 @@ function GalleryShowcase() {
         <div className="about-gallery-grid">
           {GALLERY_IMAGES.map((src, i) => (
             <div key={src} className={"about-gallery-cell about-gallery-cell-" + (i + 1)} data-reveal="up" data-delay={i * 70}>
-              <img src={src} alt="Calyco-designed interior" />
+              <img src={src} alt="Calyco-designed interior" loading="lazy" />
             </div>
           ))}
         </div>
@@ -200,7 +200,7 @@ export function AboutContent() {
             </div>
           </div>
           <div className="about-split-image" data-reveal="up" data-delay="160">
-            <img src={IMG_ENTRYWAY} alt="An elegant Calyco-designed entryway" />
+            <img src={IMG_ENTRYWAY} alt="An elegant Calyco-designed entryway" loading="lazy" />
           </div>
         </div>
       </section>
@@ -211,7 +211,7 @@ export function AboutContent() {
       <section className="wc-overview-v2" style={{ paddingTop: 0 }}>
         <div className="wc-overview-v2-inner">
           <div className="about-split-image" data-reveal="up" data-delay="160">
-            <img src={IMG_HOME_OFFICE} alt="A Calyco-designed home office" />
+            <img src={IMG_HOME_OFFICE} alt="A Calyco-designed home office" loading="lazy" />
           </div>
           <div>
             <div data-reveal="up">
@@ -265,7 +265,7 @@ export function AboutContent() {
               </div>
             </div>
             <div className="about-split-image" data-reveal="up" data-delay="200">
-              <img src={IMG_BEDROOM} alt="A Calyco-designed bedroom" />
+              <img src={IMG_BEDROOM} alt="A Calyco-designed bedroom" loading="lazy" />
             </div>
           </div>
 
@@ -282,7 +282,7 @@ export function AboutContent() {
         <div className="feature-inner">
           <div className="about-split about-split-intro">
             <div className="about-split-image" data-reveal="up">
-              <img src={IMG_WARDROBE} alt="A Calyco-designed wardrobe and storage" />
+              <img src={IMG_WARDROBE} alt="A Calyco-designed wardrobe and storage" loading="lazy" />
             </div>
             <div>
               <p className="wc-v2-eyebrow" data-reveal="up" data-delay="80">Why Choose Us</p>
@@ -304,7 +304,7 @@ export function AboutContent() {
       <section className="about-mv-section">
         <div className="about-mv-grid">
           <div className="about-mv-image" data-reveal="up">
-            <img src={IMG_LIVING} alt="A Calyco-designed living room" />
+            <img src={IMG_LIVING} alt="A Calyco-designed living room" loading="lazy" />
           </div>
           <div className="about-mv-card" data-reveal="up" data-delay="80">
             <p className="wc-v2-eyebrow">Our Mission</p>
@@ -325,7 +325,7 @@ export function AboutContent() {
 
       {/* ── WHAT MAKES US DIFFERENT ── */}
       <section className="wc-promise-v2">
-        <img src={IMG_LOUNGE} alt="" className="wc-promise-v2-bg" aria-hidden="true" />
+        <img src={IMG_LOUNGE} alt="" className="wc-promise-v2-bg" aria-hidden="true" loading="lazy" />
         <div className="wc-promise-v2-scrim" />
         <div className="wc-promise-v2-quote">&ldquo;</div>
         <motion.div
@@ -363,7 +363,7 @@ export function AboutContent() {
 
       {/* ── CLOSING CTA ── */}
       <section className="wc-cta-v2">
-        <img src={IMG_LIVING} alt="" className="wc-cta-v2-bg" aria-hidden="true" />
+        <img src={IMG_LIVING} alt="" className="wc-cta-v2-bg" aria-hidden="true" loading="lazy" />
         <div className="wc-cta-v2-scrim" />
         <motion.div
           className="wc-cta-v2-blob"

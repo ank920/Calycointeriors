@@ -12,10 +12,10 @@ const PROJECTS = [
   { img: "/assets/images/Luxurious%20home%20theater%20with%20ambient%20lighting.png", title: "Home Theater", city: "Jaipur Estate" }
 ];
 
-function GalleryCard({ p, hidden }: { p: (typeof PROJECTS)[number]; hidden?: boolean }) {
+function GalleryCard({ p, hidden, eager }: { p: (typeof PROJECTS)[number]; hidden?: boolean; eager?: boolean }) {
   return (
     <div className="gallery-card" aria-hidden={hidden}>
-      <img src={p.img} alt={hidden ? "" : `${p.title} — ${p.city}`} />
+      <img src={p.img} alt={hidden ? "" : `${p.title} — ${p.city}`} loading={eager ? "eager" : "lazy"} />
       <div className="gallery-card-overlay" />
       <div className="gallery-card-caption">
         <p className="gallery-card-city">{p.city}</p>
@@ -29,8 +29,8 @@ export function ProjectGallery() {
   return (
     <div className="gallery-track-wrap">
       <div className="gallery-track">
-        {PROJECTS.map((p) => (
-          <GalleryCard key={p.title} p={p} />
+        {PROJECTS.map((p, i) => (
+          <GalleryCard key={p.title} p={p} eager={i < 3} />
         ))}
         {PROJECTS.map((p) => (
           <GalleryCard key={`${p.title}-dup`} p={p} hidden />

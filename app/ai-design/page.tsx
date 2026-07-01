@@ -32,6 +32,11 @@ const FEATURES = [
 export default function AIDesignPage() {
   return (
     <>
+      {/* Preload critical above-the-fold images before JS runs */}
+      <link rel="preload" as="image" href="/assets/home%20page/Bedroom.webp" />
+      <link rel="preload" as="image" href="/assets/home%20page/Living%20Room.webp" />
+      <link rel="preload" as="image" href="/assets/home%20page/Kitchen.webp" />
+
       <CustomCursor />
       <SiteInteractions />
       <ScrollEngine />
